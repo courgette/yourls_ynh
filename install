@@ -1,1 +1,21 @@
 #!/bin/bash
+
+# Retrieve arguments
+domain=$1
+path=$2
+
+# Check domain/path availability
+sudo yunohost app checkurl $domain$path -a yourls
+if [[ ! $? -eq 0 ]]; then
+exit 1
+fi
+
+# Copy files to the right place
+final_path=/var/www/yourls
+sudo mkdir -p $final_path
+sudo cp -a ../sources/* $final_path
+
+# Set permissions
+sudo chown -R www-data: $final_path
+
+pwd
