@@ -1,0 +1,35 @@
+{
+    "name": "Yourls",
+    "id": "yourls",
+    "description": {
+        "en": "A drop-in, low-overhead monitoring web dashboard for a linux machine.",
+        "fr": "Un tableau de bord leger pour le monitoring d'un serveur linux."
+    },
+    "developer": {
+        "name": "courgette",
+        "email": "courgette@farcie.fr",
+        "url": "http://thomaslebeau.fr"
+    },
+    "multi_instance": "false",
+    "arguments": {
+        "install" : [
+            {
+                "name": "domain",
+                "ask": {
+                    "en": "Choose a domain for Yourls",
+                    "fr": "Choisissez un domaine pour Yourls"
+                },
+                "example": "domain.org"
+            },
+            {
+                "name": "path",
+                "ask": {
+                    "en": "Choose a path for Yourls",
+                    "fr": "Choisissez un chemin pour Yourls"
+                },
+                "example": "/yourls",
+                "default": "/yourls"
+            }
+        ]
+    }
+}
