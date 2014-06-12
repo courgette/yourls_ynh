@@ -13,9 +13,8 @@ fi
 # Copy files to the right place
 final_path=/var/www/yourls
 sudo mkdir -p $final_path
-sudo cp -a ../sources/* $final_path
+pwd
+#sudo cp -a ../sources/* $final_path
 
 # Set permissions
-sudo chown -R www-data: $final_path
-
-pwd
+#sudo chown -R www-data: $final_path
