@@ -37,7 +37,7 @@
                     "fr": "Administrateur du site (doit être un utilisateur Yunohost existant)"
                 },
                 "example": "yoda"
-            },
+            }
 
         ]
     }
