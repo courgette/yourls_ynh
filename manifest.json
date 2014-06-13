@@ -37,6 +37,14 @@
                     "fr": "Administrateur du site (doit être un utilisateur Yunohost existant)"
                 },
                 "example": "yoda"
+            },
+            {
+                "name": "upload_password",
+                "ask": {
+                    "en": "Set the password granting upload permissions (leave empty to allow anybody to upload)",
+                    "fr": "Choisissez le password pour autoriser l'upload (laissez vide pour autorisé tout le monde)"
+                },
+                "example": "supersecretpassword"
             }
 
         ]

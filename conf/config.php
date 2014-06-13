@@ -11,10 +11,10 @@
 define( 'YOURLS_DB_USER', 'yunouser' );
 
 /** MySQL database password */
-define( 'YOURLS_DB_PASS', 'yunopwd' );
+define( 'YOURLS_DB_PASS', 'yunopass' );
 
 /** The name of the database for YOURLS */
-define( 'YOURLS_DB_NAME', 'yunouser' );
+define( 'YOURLS_DB_NAME', 'yunobase' );
 
 /** MySQL hostname.
  ** If using a non standard port, specify it like 'hostname:port', eg. 'localhost:9999' or '127.0.0.1:666' */
@@ -57,7 +57,7 @@ define( 'YOURLS_COOKIEKEY', 'modify this text with something random' );
  ** YOURLS will auto encrypt plain text passwords in this file
  ** Read http://yourls.org/userpassword for more information */
 $yourls_user_passwords = array(
-  'username' => 'password'  // You can have one or more 'login'=>'password' lines
+  'yourlsuser' => 'yourlspass'  // You can have one or more 'login'=>'password' lines
 );
 
 /** Debug mode to output some internal information
