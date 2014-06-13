@@ -43,6 +43,7 @@ sudo sed -i "s/yunobase/$db_user/g" $final_path/user/config.php
 sudo sed -i "s/yunodomain/$domain/g" $final_path/user/config.php
 sudo sed -i "s/yourlsuser/$admin_user/g" $final_path/user/config.php
 sudo sed -i "s/yourlspass/$upload_password/g" $final_path/user/config.php
+sudo sed -i "s/yourlspath/$path/g" $final_path/user/config.php
 
 
 # Set permissions
