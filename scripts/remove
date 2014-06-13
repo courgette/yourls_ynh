@@ -1,0 +1,6 @@
+#!/bin/bash
+
+domain=$(sudo yunohost app setting yourls domain)
+
+sudo rm -rf /var/www/yourls
+sudo rm -f /etc/nginx/conf.d/$domain.d/yourls.conf
