@@ -1,1 +1,1 @@
-to finish to install go to <a href="/admin">Admin page</a>
+to finish to install go to <a href="admin">Admin page</a>
