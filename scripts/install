@@ -35,6 +35,8 @@ final_path=/var/www/yourls
 sudo mkdir -p $final_path
 sudo cp -a ../sources/* $final_path
 
+sudo cp ../conf/index.php $final_path/
+
 # Change variable in yourls configuration
 sudo cp ../conf/config.php $final_path/user/config.php
 sudo sed -i "s/yunouser/$db_user/g" $final_path/user/config.php
@@ -51,6 +53,7 @@ sudo chown -R www-data: $final_path
 
 # Modify Nginx configuration file and copy it to Nginx conf directory
 sed -i "s@PATHTOCHANGE@$path@g" ../conf/nginx.conf*
+sed -i "s@DOMAINTOCHANGE@$domain@g" ../conf/nginx.conf*
 sed -i "s@ALIASTOCHANGE@$final_path@g" ../conf/nginx.conf*
 nginxconf=/etc/nginx/conf.d/$domain.d/yourls.conf
 sudo cp ../conf/nginx.conf $nginxconf
