@@ -36,6 +36,8 @@ sudo mkdir -p $final_path
 sudo cp -a ../sources/* $final_path
 
 sudo cp ../conf/index.php $final_path/
+sudo cp -r ../conf/yunohost_auth $final_path/user/plugins
+
 
 # Change variable in yourls configuration
 sudo cp ../conf/config.php $final_path/user/config.php
@@ -62,4 +64,18 @@ sudo chmod 600 $nginxconf
 
 # Reload Nginx and regenerate SSOwat conf
 sudo service nginx reload
+sudo yunohost app setting yourls unprotected_uris -v "/"
 sudo yunohost app ssowatconf
+
+# Start Yourls install (database table creation)
+curl -kL -X POST https://$domain$path/admin/install.php --data "install=dummy" > /dev/null 2>&1
+
+# Activate auth plugin
+mysql -u $db_user -p$db_pwd $db_user < ../conf/activate_plugins.sql
+
+#sudo yunohost app setting yourls skipped_uris -d
+#sudo yunohost app setting yourls unprotected_uris -v "/admin"
+
+sudo service nginx reload
+sudo yunohost app ssowatconf
+
