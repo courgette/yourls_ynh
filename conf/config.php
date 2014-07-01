@@ -57,7 +57,6 @@ define( 'YOURLS_COOKIEKEY', 'modify this text with something random' );
  ** YOURLS will auto encrypt plain text passwords in this file
  ** Read http://yourls.org/userpassword for more information */
 $yourls_user_passwords = array(
-  // 'yourlsuser' => 'yourlspass'  // You can have one or more 'login'=>'password' lines
 );
 
 /** Debug mode to output some internal information
