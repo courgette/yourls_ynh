@@ -2,8 +2,8 @@
     "name": "Yourls",
     "id": "yourls",
     "description": {
-        "en": "A drop-in, low-overhead monitoring web dashboard for a linux machine.",
-        "fr": "Un tableau de bord leger pour le monitoring d'un serveur linux."
+        "en": "a URL shortening service",
+        "fr": "un service de raccourcisseur d'url"
     },
     "developer": {
         "name": "courgette",
