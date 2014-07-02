@@ -2,8 +2,8 @@
     "name": "Yourls",
     "id": "yourls",
     "description": {
-        "en": "a URL shortening service",
-        "fr": "un service de raccourcisseur d'url"
+        "en": "An URL shortening service",
+        "fr": "Un service de raccourcisseur d'url"
     },
     "developer": {
         "name": "courgette",
@@ -34,17 +34,9 @@
                 "name": "admin",
                 "ask": {
                     "en": "Choose the Yourls administrator (must be an existing YunoHost user)",
-                    "fr": "Administrateur du site (doit être un utilisateur Yunohost existant)"
+                    "fr": "Administrateur du site Yourls (doit être un utilisateur Yunohost existant)"
                 },
                 "example": "yoda"
-            },
-            {
-                "name": "upload_password",
-                "ask": {
-                    "en": "Set the password granting upload permissions (leave empty to allow anybody to upload)",
-                    "fr": "Choisissez le password pour autoriser l'upload (laissez vide pour autorisé tout le monde)"
-                },
-                "example": "supersecretpassword"
             }
 
         ]
