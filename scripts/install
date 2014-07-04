@@ -45,7 +45,7 @@ sudo sed -i "s/yunopass/$db_pwd/g" $final_path/user/config.php
 sudo sed -i "s/yunobase/$db_user/g" $final_path/user/config.php
 sudo sed -i "s/yunodomain/$domain/g" $final_path/user/config.php
 sudo sed -i "s/yourlsuser/$admin_user/g" $final_path/user/config.php
-sudo sed -i "s/_yourlspath$path/g" $final_path/user/config.php
+sudo sed -i "s@_yourlspath@$path@g" $final_path/user/config.php
 
 # Set permissions
 sudo chown -R www-data: $final_path
