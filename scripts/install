@@ -72,10 +72,7 @@ curl -kL -X POST https://$domain$path/admin/install.php --data "install=dummy" >
 
 # Activate auth plugin
 mysql -u $db_user -p$db_pwd $db_user < ../conf/activate_plugins.sql
-
-#sudo yunohost app setting yourls skipped_uris -d
-#sudo yunohost app setting yourls unprotected_uris -v "/admin"
-
+sudo yunohost app setting yourls protected_uris -v "/admin"
 sudo service nginx reload
 sudo yunohost app ssowatconf
 
