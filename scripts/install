@@ -12,7 +12,7 @@ exit 1
 fi
 
 # Check that admin user is an existing account
-sudo yunohost user list --json | grep -q "\"username\": \"$admin_user\""
+sudo yunohost user list --json | grep -qi "\"username\": \"$admin_user\""
 if [[ ! $? -eq 0 ]]; then
     echo "Error : the chosen admin user does not exist"
     exit 1
