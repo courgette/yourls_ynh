@@ -105,7 +105,7 @@ sudo chmod 600 $nginxconf
 
 # Reload Nginx and regenerate SSOwat conf
 sudo service nginx reload
-sudo yunohost app setting yourls unprotected_uris -v "/"
+sudo yunohost app setting $app unprotected_uris -v "/"
 sudo yunohost app ssowatconf
 
 # Start Yourls install (database table creation)
