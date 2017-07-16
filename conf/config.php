@@ -32,13 +32,13 @@ define( 'YOURLS_DB_PREFIX', 'yourls_' );
 define( 'YOURLS_SITE', 'http://yunodomain/_yourlspath' );
 
 /** Timezone GMT offset */
-define( 'YOURLS_HOURS_OFFSET', 0 ); 
+define( 'YOURLS_HOURS_OFFSET', 0 );
 
 /** YOURLS language or "locale".
  ** Change this setting to "localize" YOURLS (use a translation instead of the default English). A corresponding .mo file
  ** must be installed in the user/language directory.
  ** See http://yourls.org/translations for more information */
-define( 'YOURLS_LANG', '' ); 
+define( 'YOURLS_LANG', '' );
 
 /** Allow multiple short URLs for a same long URL
  ** Set to true to have only one pair of shortURL/longURL (default YOURLS behavior)
@@ -62,7 +62,7 @@ $yourls_user_passwords = array(
 /** Debug mode to output some internal information
  ** Default is false for live site. Enable when coding or before submitting a new issue */
 define( 'YOURLS_DEBUG', false );
-  
+
 /*
  ** URL Shortening settings
  */
@@ -75,7 +75,7 @@ define( 'YOURLS_URL_CONVERT', 36 );
  * Stick to one setting. It's best not to change after you've started creating links.
  */
 
-/** 
+/**
 * Reserved keywords (so that generated URLs won't match them)
 * Define here negative, unwanted or potentially misleading keywords.
 */
@@ -88,4 +88,3 @@ $yourls_reserved_URL = array(
  */
 
 define( 'YOURLS_YUNOHOST_AUTH_ADMIN', 'yourlsuser' );
-

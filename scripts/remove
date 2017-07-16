@@ -1,11 +1,37 @@
 #!/bin/bash
 
-db_user=yourls
-db_name=yourls
-root_pwd=$(sudo cat /etc/yunohost/mysql)
-domain=$(sudo yunohost app setting yourls domain)
+#=================================================
+# GENERIC START
+#=================================================
+# IMPORT GENERIC HELPERS
+#=================================================
 
-mysql -u root -p$root_pwd -e "DROP DATABASE $db_name ; DROP USER $db_user@localhost ;"
+source _common.sh
+source /usr/share/yunohost/helpers
 
-sudo rm -rf /var/www/yourls
-sudo rm -f /etc/nginx/conf.d/$domain.d/yourls.conf
+#=================================================
+# LOAD SETTINGS
+#=================================================
+
+app=$YNH_APP_INSTANCE_NAM
+
+domain=$(ynh_app_setting_get $app domain)
+db_name=$(ynh_app_setting_get $app db_name)
+
+# Remove a database if it exists, along with the associated user
+ynh_mysql_remove_db $db_name $db_name
+
+#=================================================
+# REMOVE APP MAIN DIR
+#=================================================
+
+# Remove the app directory securely
+ynh_secure_remove "/var/www/$app"
+
+
+#=================================================
+# REMOVE NGINX CONFIGURATION
+#=================================================
+
+# Remove the dedicated nginx config
+ynh_remove_nginx_config
