@@ -38,13 +38,13 @@ db_pwd=$(ynh_app_setting_get $app mysqlpwd)
 # BACKUP THE APP MAIN DIR
 #=================================================
 
-ynh_backup "$final_path" "${backup_dir}$final_path"
+ynh_backup "$final_path" "$final_path"
 
 #=================================================
 # BACKUP THE NGINX CONFIGURATION
 #=================================================
 
-ynh_backup "/etc/nginx/conf.d/$domain.d/$app.conf" "${backup_dir}/etc/nginx/conf.d/$domain.d/$app.conf"
+ynh_backup "/etc/nginx/conf.d/$domain.d/$app.conf" "/etc/nginx/conf.d/$domain.d/$app.conf"
 
 
 #=================================================
@@ -52,4 +52,4 @@ ynh_backup "/etc/nginx/conf.d/$domain.d/$app.conf" "${backup_dir}/etc/nginx/conf
 #=================================================
 
 ynh_mysql_dump_db "$db_name" > db.sql
-ynh_backup "db.sql" "${backup_dir}/db.sql"
+ynh_backup "db.sql" "/db.sql"
