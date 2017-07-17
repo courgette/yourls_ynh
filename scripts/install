@@ -112,7 +112,7 @@ sudo yunohost app ssowatconf
 curl -kL -X POST https://$domain$path_url/admin/install.php --data "install=dummy" > /dev/null 2>&1
 
 # Activate auth plugin
-mysql -u $db_name -p$db_pwd $db_name < ../conf/activate_plugins.sql
+mysql -u $db_name -p $db_pwd $db_name < ../conf/activate_plugins.sql
 
 
 
