@@ -115,6 +115,5 @@ curl -kL -X POST https://$domain$path_url/admin/install.php --data "install=dumm
 ynh_mysql_connect_as "$db_name" "$db_pwd" "$db_name" < "../conf/activate_plugins.sql"
 
 
-
 sudo service nginx reload
 sudo yunohost app ssowatconf
