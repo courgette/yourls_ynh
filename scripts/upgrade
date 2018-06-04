@@ -28,6 +28,25 @@ if [ -z $db_name ]; then	# If db_name doesn't exist, create it
 	ynh_app_setting_set $app db_name $db_name
 fi
 
+# If final_path doesn't exist, create it
+if [ -z $final_path ]; then
+	final_path=/var/www/$app
+	ynh_app_setting_set $app final_path $final_path
+fi
+
+#=================================================
+# BACKUP BEFORE UPGRADE THEN ACTIVE TRAP
+#=================================================
+
+# Backup the current version of the app
+ynh_backup_before_upgrade
+ynh_clean_setup () {
+	# restore it if the upgrade fails
+	ynh_restore_upgradebackup
+}
+# Exit if an error occurs during the execution of the script
+ynh_abort_if_errors
+
 #=================================================
 # CHECK THE PATH
 #=================================================
@@ -40,42 +59,65 @@ path_url=$(ynh_normalize_url_path $path_url)
 #=================================================
 # DOWNLOAD, CHECK AND UNPACK SOURCE
 #=================================================
-sudo mv ${final_path} ${final_path}.old
+# Download, check integrity, uncompress and patch the source from app.src
+# Create a temporary directory
+tmpdir="$(mktemp -d)"
+
+# Backup the app files in the temp dir
+sudo cp -a "$final_path/index.php" "$tmpdir"
+sudo cp -a "$final_path/user/plugins/yunohost_auth" "$tmpdir/user/plugins"
+sudo cp -a "$final_path/.htaccess" "$tmpdir"
+sudo cp -a "$final_path/user/config.php" "$tmpdir/user"
+
+# Remove the app directory securely
+ynh_secure_remove "$final_path"
 
 # Download, check integrity, uncompress and patch the source from app.src
 ynh_setup_source "$final_path"
-sudo cp -a ${final_path}.old/index.php ${final_path}
-sudo cp -a ${final_path}.old/user/plugins/yunohost_auth ${final_path}/user/plugins
-sudo cp -a ${final_path}.old/.htaccess ${final_path}
-sudo cp -a ${final_path}.old/user/config.php ${final_path}/user
-sudo chown -R www-data: $final_path
 
-# delete temp directory
-sudo rm -Rf ${final_path}.old
+# Copy the app files from tmp to final_path
+sudo cp -a "$tmpdir/index.php" "$final_path"
+sudo cp -a "$tmpdir/user/plugins/yunohost_auth" "$final_path/user/plugins"
+sudo cp -a "$tmpdir/.htaccess" "$final_path"
+sudo cp -a "$tmpdir/user/config.php" "$final_path/user"
+
+#remove tmp dir
+sudo rm -Rf "$tmpdir"
 
 #=================================================
 # NGINX CONFIGURATION
 #=================================================
 
 # Create a dedicated nginx config
-# Modify Nginx configuration file and copy it to Nginx conf directory
-sed -i "s@LOCATIONTOCHANGE@$path_url@g" ../conf/nginx.conf*
-sed -i "s@PATHTOCHANGE@${path_url%/}@g" ../conf/nginx.conf*
-sed -i "s@DOMAINTOCHANGE@$domain@g" ../conf/nginx.conf*
-sed -i "s@ALIASTOCHANGE@$final_path@g" ../conf/nginx.conf*
-nginxconf=/etc/nginx/conf.d/$domain.d/$app.conf
-sudo cp ../conf/nginx.conf $nginxconf
-sudo chown root: $nginxconf
-sudo chmod 600 $nginxconf
+ynh_add_nginx_config
 
+#=================================================
+# CREATE DEDICATED USER
+#=================================================
+
+# Create a system user
+ynh_system_user_create $app
+
+#=================================================
+# PHP-FPM CONFIGURATION
+#=================================================
+
+# Create a dedicated php-fpm config
+ynh_add_fpm_config
+
+# Verify the checksum and backup the file if it's different
+ynh_backup_if_checksum_is_different "$final_path/user/config.php"
+# Recalculate and store the config file checksum into the app settings
+ynh_store_file_checksum "$final_path/user/config.php"
+
+# Set right permissions for curl installation
+chown -R $app: $final_path
 
 #=================================================
 # SETUP SSOWAT
 #=================================================
 
-
 ynh_app_setting_set $app unprotected_uris "/"
-
 
 #=================================================
 # RELOAD NGINX

@@ -5,16 +5,23 @@
         "en": "An URL shortening service",
         "fr": "Un service de raccourcisseur d'url"
     },
+    "version": "1.0",
     "url": "https://github.com/YOURLS/YOURLS",
     "license": "free",
-    "developer": {
+    "maintainer": {
         "name": "Anmol Sharma",
-        "email": "anmol@datamol.in"
+        "email": "anmol@datamol.org",
+        "url": ""
     },
     "requirements": {
-        "yunohost": ">> 2.5.6"
-    },
-    "multi_instance": "false",
+        "yunohost": ">= 2.7.2"
+    }, 
+    "previous_maintainers": {
+        "name": "courgette",
+        "email": "courgette@farcie.fr",
+        "url": "http://thomaslebeau.fr"
+        },
+    "multi_instance": "true",
     "services": [
         "nginx",
         "php5-fpm",
