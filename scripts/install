@@ -76,44 +76,60 @@ ynh_app_setting_set $app final_path $final_path
 # Download, check integrity, uncompress and patch the source from app.src
 ynh_setup_source "$final_path"
 
+#=================================================
+# NGINX CONFIGURATION
+#=================================================
+
+# Create a dedicated nginx config
+ynh_add_nginx_config
+
+#=================================================
+# CREATE DEDICATED USER
+#=================================================
+
+# Create a system user
+ynh_system_user_create $app
+
+#=================================================
+# PHP-FPM CONFIGURATION
+#=================================================
+
+# Create a dedicated php-fpm config
+ynh_add_fpm_config
 
 sudo cp ../conf/index.php $final_path/
-sudo cp -r ../conf/yunohost_auth $final_path/user/plugins
+sudo cp -r ../sources/patches/yunohost_auth $final_path/user/plugins
 
 
 # Change variable in yourls configuration
 sudo cp ../conf/config.php $final_path/user/config.php
-sudo sed -i "s/yunouser/$db_name/g" $final_path/user/config.php
-sudo sed -i "s/yunopass/$db_pwd/g" $final_path/user/config.php
-sudo sed -i "s/yunobase/$db_name/g" $final_path/user/config.php
-sudo sed -i "s/yunodomain/$domain/g" $final_path/user/config.php
-sudo sed -i "s/yourlsuser/$admin/g" $final_path/user/config.php
-sudo sed -i "s@_yourlspath@${path_url%/}@g" $final_path/user/config.php
+ynh_replace_string "yunouser" "$db_name" "$final_path/user/config.php"
+ynh_replace_string "yunopass" "$db_pwd" "$final_path/user/config.php"
+ynh_replace_string "yunobase" "$db_name" "$final_path/user/config.php"
+ynh_replace_string "yunodomain" "$domain" "$final_path/user/config.php"
+ynh_replace_string "yourlsuser" "$admin" "$final_path/user/config.php"
+ynh_replace_string "_yourlspath" "${path_url%/}" "$final_path/user/config.php"
+ynh_replace_string "modify this text with something randomr" "$(ynh_string_random 24)$(ynh_string_random 24)" "$final_path/user/config.php"
 
 # Set permissions
-sudo chown -R www-data: $final_path
-
-# Modify Nginx configuration file and copy it to Nginx conf directory
-sed -i "s@LOCATIONTOCHANGE@$path_url@g" ../conf/nginx.conf*
-sed -i "s@PATHTOCHANGE@${path_url%/}@g" ../conf/nginx.conf*
-sed -i "s@DOMAINTOCHANGE@$domain@g" ../conf/nginx.conf*
-sed -i "s@ALIASTOCHANGE@$final_path@g" ../conf/nginx.conf*
-nginxconf=/etc/nginx/conf.d/$domain.d/$app.conf
-sudo cp ../conf/nginx.conf $nginxconf
-sudo chown root: $nginxconf
-sudo chmod 600 $nginxconf
+sudo chown -R $app: $final_path
 
 # Reload Nginx and regenerate SSOwat conf
-sudo service nginx reload
-sudo yunohost app setting $app unprotected_uris -v "/"
-sudo yunohost app ssowatconf
+
+yunohost app setting $app unprotected_uris -v "/"
+yunohost app ssowatconf
+
+# Reload Nginx
+systemctl reload nginx
 
 # Start Yourls install (database table creation)
-curl -kL -X POST https://$domain$path_url/admin/install.php --data "install=dummy" > /dev/null 2>&1
+ynh_local_curl "/admin/install.php" "install=dummy" 
 
 # Activate auth plugin
 ynh_mysql_connect_as "$db_name" "$db_pwd" "$db_name" < "../conf/activate_plugins.sql"
 
+# Calculate and store the config file checksum into the app settings
+ynh_store_file_checksum "$final_path/user/config.php"
 
 sudo service nginx reload
 sudo yunohost app ssowatconf
