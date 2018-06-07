@@ -60,8 +60,9 @@ path_url=$(ynh_normalize_url_path $path_url)
 # DOWNLOAD, CHECK AND UNPACK SOURCE
 #=================================================
 # Download, check integrity, uncompress and patch the source from app.src
-# Create a temporary directory
+# Create a temporary directory along with /user/plugin sub directory in it
 tmpdir="$(mktemp -d)"
+mkdir -p "$tmpdir/user/plugins"
 
 # Backup the app files in the temp dir
 sudo cp -a "$final_path/index.php" "$tmpdir"
