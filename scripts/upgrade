@@ -62,9 +62,10 @@ path_url=$(ynh_normalize_url_path $path_url)
 # Download, check integrity, uncompress and patch the source from app.src
 # Create a temporary directory along with /user/plugin sub directory in it
 tmpdir="$(mktemp -d)"
-mkdir -p "$tmpdir/user"
+mkdir -p "$tmpdir/user/"
 
 # Backup the app files in the temp dir
+sudo cp -a "$final_path/index.php" "$tmpdir"
 sudo cp -a "$final_path/.htaccess" "$tmpdir"
 sudo cp -a "$final_path/user/config.php" "$tmpdir/user"
 
@@ -75,6 +76,7 @@ ynh_secure_remove "$final_path"
 ynh_setup_source "$final_path"
 
 # Copy the app files from tmp to final_path
+sudo cp -a "$tmpdir/index.php" "$final_path"
 sudo cp -a "$tmpdir/.htaccess" "$final_path"
 sudo cp -a "$tmpdir/user/config.php" "$final_path/user"
 
@@ -115,6 +117,7 @@ chown -R $app: $final_path
 #=================================================
 
 ynh_app_setting_set $app unprotected_uris "/"
+
 
 #=================================================
 # RELOAD NGINX

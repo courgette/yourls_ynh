@@ -102,6 +102,9 @@ ynh_system_user_create $app
 # Create a dedicated php-fpm config
 ynh_add_fpm_config
 
+# copy index file 
+sudo cp ../conf/index.php $final_path/
+
 
 # Change variable in yourls configuration
 sudo cp ../conf/config.php $final_path/user/config.php
