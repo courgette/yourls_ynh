@@ -57,6 +57,7 @@ define( 'YOURLS_COOKIEKEY', 'modify this text with something random' );
  ** YOURLS will auto encrypt plain text passwords in this file
  ** Read http://yourls.org/userpassword for more information */
 $yourls_user_passwords = array(
+'yourlsuser' => 'yourpassword',
 );
 
 /** Debug mode to output some internal information
@@ -87,4 +88,8 @@ $yourls_reserved_URL = array(
  ** Personal settings would go after here.
  */
 
-define( 'YOURLS_YUNOHOST_AUTH_ADMIN', 'yourlsuser' );
+//define( 'LDAPAUTH_HOST', 'localhost' );
+//define( 'LDAPAUTH_PORT', '389' );
+//define( 'LDAPAUTH_BASE', 'dc=yunohost,dc=org' );
+//define( 'LDAPAUTH_USERNAME_FIELD', 'uid');
+

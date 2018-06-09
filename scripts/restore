@@ -31,6 +31,7 @@ domain=$(ynh_app_setting_get $app domain)
 path_url=$(ynh_app_setting_get $app path)
 final_path=$(ynh_app_setting_get $app final_path)
 db_name=$(ynh_app_setting_get $app db_name)
+admin=$(ynh_app_setting_get $app admin)
 
 #=================================================
 # CHECK IF THE APP CAN BE RESTORED
@@ -91,6 +92,13 @@ ynh_restore_file "/etc/php5/fpm/conf.d/20-$app.ini"
 # RELOAD NGINX AND PHP-FPM
 #=================================================
 sudo yunohost app setting $app unprotected_uris -v "/"
+
+#=================================================
+# SETUP SSOWAT
+#=================================================
+
+# Restrict access to admin only
+yunohost app addaccess --users=$admin $app
 
 #=================================================
 # GENERIC FINALIZATION

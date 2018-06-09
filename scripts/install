@@ -23,6 +23,7 @@ ynh_abort_if_errors
 domain=$YNH_APP_ARG_DOMAIN
 path_url=$YNH_APP_ARG_PATH
 admin=$YNH_APP_ARG_ADMIN
+pass=$YNH_APP_ARG_PASS
 
 # This is a multi-instance app, meaning it can be installed several times independently
 # The id of the app as stated in the manifest is available as $YNH_APP_ID
@@ -49,6 +50,10 @@ ynh_webpath_register $app $domain $path_url
 
 final_path=/var/www/$app
 test ! -e "$final_path" || ynh_die "This path already contains a folder"
+
+# Check password strength
+[[ ${#pass} -gt 6 ]] || ynh_die \
+"The password is too weak, it must be longer than 6 characters"
 
 #=================================================
 # STORE SETTINGS FROM MANIFEST
@@ -97,9 +102,6 @@ ynh_system_user_create $app
 # Create a dedicated php-fpm config
 ynh_add_fpm_config
 
-sudo cp ../conf/index.php $final_path/
-sudo cp -r ../sources/patches/yunohost_auth $final_path/user/plugins
-
 
 # Change variable in yourls configuration
 sudo cp ../conf/config.php $final_path/user/config.php
@@ -107,9 +109,10 @@ ynh_replace_string "yunouser" "$db_name" "$final_path/user/config.php"
 ynh_replace_string "yunopass" "$db_pwd" "$final_path/user/config.php"
 ynh_replace_string "yunobase" "$db_name" "$final_path/user/config.php"
 ynh_replace_string "yunodomain" "$domain" "$final_path/user/config.php"
-ynh_replace_string "yourlsuser" "$admin" "$final_path/user/config.php"
 ynh_replace_string "_yourlspath" "${path_url%/}" "$final_path/user/config.php"
-ynh_replace_string "modify this text with something randomr" "$(ynh_string_random 24)$(ynh_string_random 24)" "$final_path/user/config.php"
+ynh_replace_string "yourlsuser" "$admin" "$final_path/user/config.php"
+ynh_replace_string "yourpassword" "$pass" "$final_path/user/config.php"
+ynh_replace_string "modify this text with something random" "$(ynh_string_random 24)$(ynh_string_random 24)" "$final_path/user/config.php"
 
 # Set permissions
 sudo chown -R $app: $final_path
@@ -125,11 +128,13 @@ systemctl reload nginx
 # Start Yourls install (database table creation)
 ynh_local_curl "/admin/install.php" "install=dummy" 
 
-# Activate auth plugin
-ynh_mysql_connect_as "$db_name" "$db_pwd" "$db_name" < "../conf/activate_plugins.sql"
 
 # Calculate and store the config file checksum into the app settings
 ynh_store_file_checksum "$final_path/user/config.php"
+
+#=================================================
+# SETUP SSOWAT
+#=================================================
 
 sudo service nginx reload
 sudo yunohost app ssowatconf

@@ -56,7 +56,13 @@
                     "fr": "Administrateur du site Yourls (doit être un utilisateur Yunohost existant)"
                 },
                 "example": "yoda"
-            }
+            },
+            {
+                "name": "pass",
+                "type": "password",
+                "ask": {
+                    "en": "Password for the admin account (At least 6 characters long)"
+                }
 
         ]
     }
