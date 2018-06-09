@@ -52,8 +52,8 @@
                 "name": "admin",
                 "type": "user",
                 "ask": {
-                    "en": "Choose the Yourls administrator (must be an existing YunoHost user)",
-                    "fr": "Administrateur du site Yourls (doit être un utilisateur Yunohost existant)"
+                    "en": "Choose the Yourls administrator (can be other then YunoHOst registered user)",
+                    "fr": "Administrateur du site Yourls"
                 },
                 "example": "yoda"
             },
@@ -61,8 +61,10 @@
                 "name": "pass",
                 "type": "password",
                 "ask": {
-                    "en": "Password for the admin account (At least 6 characters long)"
-                }
+                    "en": "Password for the admin account (At least 6 characters long)",
+                    "fr": "Administrateur password (At least 6 characters long)"
+                },
+            }
 
         ]
     }
