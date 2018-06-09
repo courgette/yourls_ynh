@@ -58,12 +58,13 @@
                 "example": "yoda"
             },
             {
-                "name": "pass",
+                "name": "password",
                 "type": "password",
                 "ask": {
                     "en": "Password for the admin account (At least 6 characters long)",
                     "fr": "Administrateur password (At least 6 characters long)"
                 },
+                "example": "Strong password"
             }
 
         ]
