@@ -1,6 +1,7 @@
 {
     "name": "Yourls",
     "id": "yourls",
+    "packaging_format": 1,
     "description": {
         "en": "An URL shortening service",
         "fr": "Un service de raccourcisseur d'url"
@@ -21,7 +22,7 @@
         "email": "courgette@farcie.fr",
         "url": "http://thomaslebeau.fr"
         },
-    "multi_instance": "true",
+    "multi_instance": true,
     "services": [
         "nginx",
         "php5-fpm",
