@@ -8,4 +8,4 @@ with open("/etc/ssowat/conf.json.persistent", "r", encoding='utf-8') as jsonFile
         data["protected_urls"] = ["__DOMAIN__/__PATH__/admin"]
 
 with open("/etc/ssowat/conf.json.persistent", "w", encoding='utf-8') as jsonFile:
-jsonFile.write(json.dumps(data, indent=4, sort_keys=True))
+	jsonFile.write(json.dumps(data, indent=4, sort_keys=True))
