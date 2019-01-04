@@ -126,9 +126,15 @@ ynh_replace_string "modify this text with something random" "$(ynh_string_random
 cp ../conf/add_sso_conf.py    $final_path/add_sso_conf.py
 cp ../conf/remove_sso_conf.py $final_path/remove_sso_conf.py
 ynh_replace_string "__DOMAIN__" "$domain"   "$final_path/add_sso_conf.py"
-ynh_replace_string "__PATH__"   "$path_url" "$final_path/add_sso_conf.py"
+if [ "$path_url" != "/" ]; then
+	ynh_replace_string "__PATH__"   "$path_url" "$final_path/add_sso_conf.py"
+    ynh_replace_string "__PATH__"   "$path_url" "$final_path/remove_sso_conf.py"
+else
+	ynh_replace_string "__PATH__"   "" "$final_path/add_sso_conf.py"
+    ynh_replace_string "__PATH__"   "" "$final_path/remove_sso_conf.py"
+fi
 ynh_replace_string "__DOMAIN__" "$domain"   "$final_path/remove_sso_conf.py"
-ynh_replace_string "__PATH__"   "$path_url" "$final_path/remove_sso_conf.py"
+
 
 python3 $final_path/add_sso_conf.py || ynh_die "Your file /etc/ssowat/conf.json.persistent don't respect the json synaxe. Please fix the synaxe to install this app. For more information see here : https://github.com/YunoHost-Apps/synapse_ynh/issues/32"
 

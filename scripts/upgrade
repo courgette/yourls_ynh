@@ -84,9 +84,14 @@ sudo cp -a "$tmpdir/user/config.php" "$final_path/user"
 cp ../conf/add_sso_conf.py $final_path
 cp ../conf/remove_sso_conf.py $final_path
 ynh_replace_string "__DOMAIN__" "$domain"   "$final_path/add_sso_conf.py"
-ynh_replace_string "__PATH__"   "$path_url" "$final_path/add_sso_conf.py"
+if [ "$path_url" != "/" ]; then
+	ynh_replace_string "__PATH__"   "$path_url" "$final_path/add_sso_conf.py"
+    ynh_replace_string "__PATH__"   "$path_url" "$final_path/remove_sso_conf.py"
+else
+	ynh_replace_string "__PATH__"   "" "$final_path/add_sso_conf.py"
+    ynh_replace_string "__PATH__"   "" "$final_path/remove_sso_conf.py"
+fi
 ynh_replace_string "__DOMAIN__" "$domain"   "$final_path/remove_sso_conf.py"
-ynh_replace_string "__PATH__"   "$path_url" "$final_path/remove_sso_conf.py"
 
 #remove tmp dir
 sudo rm -Rf "$tmpdir"
