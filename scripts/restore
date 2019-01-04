@@ -56,6 +56,11 @@ ynh_restore_file "/etc/nginx/conf.d/$domain.d/$app.conf"
 
 ynh_restore_file "$final_path"
 
+# Open access to server without a button the home
+# The script "add_sso_conf.py" will just add en entry for the path "/_matrix" in the sso conf.json.persistent file in the cathegory "skipped_urls".
+python3 $final_path/add_sso_conf.py || ynh_die "Your file /etc/ssowat/conf.json.persistent don't respect the json synaxe. Please fix the synaxe to install this app. For more information see here : https://github.com/YunoHost-Apps/synapse_ynh/issues/32"
+
+
 #=================================================
 # RESTORE THE MYSQL DATABASE
 #=================================================

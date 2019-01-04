@@ -80,6 +80,14 @@ sudo cp -a "$tmpdir/index.php" "$final_path"
 sudo cp -a "$tmpdir/.htaccess" "$final_path"
 sudo cp -a "$tmpdir/user/config.php" "$final_path/user"
 
+# The script "add_sso_conf.py" will just add en entry for the path "/admin" in the sso conf.json.persistent file in the cathegory "protected_urls".
+cp ../conf/add_sso_conf.py $final_path
+cp ../conf/remove_sso_conf.py $final_path
+ynh_replace_string "__DOMAIN__" "$domain"   "$final_path/user/add_sso_conf.py"
+ynh_replace_string "__PATH__"   "$path_url" "$final_path/user/add_sso_conf.py"
+ynh_replace_string "__DOMAIN__" "$domain"   "$final_path/user/remove_sso_conf.py"
+ynh_replace_string "__PATH__"   "$path_url" "$final_path/user/remove_sso_conf.py"
+
 #remove tmp dir
 sudo rm -Rf "$tmpdir"
 

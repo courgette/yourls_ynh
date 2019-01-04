@@ -27,6 +27,9 @@ ynh_mysql_remove_db $db_name $db_name
 # REMOVE APP MAIN DIR
 #=================================================
 
+# Remove the protected_urls
+python3 $final_path/remove_sso_conf.py
+
 # Remove the app directory securely
 ynh_secure_remove "$final_path"
 
