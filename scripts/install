@@ -147,7 +147,7 @@ yunohost app ssowatconf
 systemctl reload nginx
 
 # Start Yourls install (database table creation)
-ynh_local_curl "/admin/install.php" "install=dummy" 
+ynh_local_curl "admin/install.php" "install=dummy" 
 
 
 # Calculate and store the config file checksum into the app settings
