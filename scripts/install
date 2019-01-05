@@ -118,8 +118,6 @@ ynh_replace_string "yunopass" "$db_pwd" "$final_path/user/config.php"
 ynh_replace_string "yunobase" "$db_name" "$final_path/user/config.php"
 ynh_replace_string "yunodomain" "$domain" "$final_path/user/config.php"
 ynh_replace_string "_yourlspath" "${path_url%/}" "$final_path/user/config.php"
-ynh_replace_string "yourlsuser" "$admin" "$final_path/user/config.php"
-ynh_replace_string "yourpassword" "$pass" "$final_path/user/config.php"
 ynh_replace_string "modify this text with something random" "$(ynh_string_random 24)$(ynh_string_random 24)" "$final_path/user/config.php"
 
 # The script "add_sso_conf.py" will just add en entry for the path "/admin" in the sso conf.json.persistent file in the cathegory "protected_urls".
@@ -145,6 +143,9 @@ sudo chown -R $app: $final_path
 # Reload Nginx and regenerate SSOwat conf
 
 yunohost app setting $app unprotected_uris -v "/"
+
+# Restrict access to admin only
+yunohost app addaccess --users=$admin $app
 yunohost app ssowatconf
 
 # Reload Nginx
