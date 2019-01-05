@@ -23,7 +23,6 @@ ynh_abort_if_errors
 domain=$YNH_APP_ARG_DOMAIN
 path_url=$YNH_APP_ARG_PATH
 admin=$YNH_APP_ARG_ADMIN
-pass=$YNH_APP_ARG_PASSWORD
 
 # This is a multi-instance app, meaning it can be installed several times independently
 # The id of the app as stated in the manifest is available as $YNH_APP_ID
@@ -50,10 +49,6 @@ ynh_webpath_register $app $domain $path_url
 
 final_path=/var/www/$app
 test ! -e "$final_path" || ynh_die "This path already contains a folder"
-
-# Check password strength
-[[ ${#pass} -gt 6 ]] || ynh_die \
-"The password is too weak, it must be longer than 6 characters"
 
 #=================================================
 # STORE SETTINGS FROM MANIFEST
