@@ -51,7 +51,7 @@
             },
             {
                 "name": "admin",
-                "type": "admin",
+                "type": "user",
                 "ask": {
                     "en": "Choose a Yourls administrator (admin privileges for Yourls will be granted to this user)",
                     "fr": "Administrateur du site Yourls"
