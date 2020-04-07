@@ -6,7 +6,7 @@
         "en": "An URL shortening service",
         "fr": "Un service de raccourcisseur d'url"
     },
-    "version": "1.7.3",
+    "version": "1.7.6",
     "url": "https://github.com/YOURLS/YOURLS",
     "license": "free",
     "maintainer": {
