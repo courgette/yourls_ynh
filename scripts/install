@@ -114,22 +114,6 @@ ynh_replace_string --match_string="__DOMAIN__" --replace_string="$domain" --targ
 ynh_replace_string --match_string="__PATH__" --replace_string="${path_url%/}" --target_file="$final_path/user/config.php"
 ynh_replace_string --match_string="__RANDOM__" --replace_string="$(ynh_string_random 24)" --target_file="$final_path/user/config.php"
 
-# The script "add_sso_conf.py" will just add en entry for the path "/admin" in the sso conf.json.persistent file in the cathegory "protected_urls".
-cp ../conf/add_sso_conf.py    $final_path/add_sso_conf.py
-cp ../conf/remove_sso_conf.py $final_path/remove_sso_conf.py
-ynh_replace_string --match_string="__DOMAIN__" --replace_string="$domain"   --target_file="$final_path/add_sso_conf.py"
-if [ "$path_url" != "/" ]; then
-	ynh_replace_string --match_string="__PATH__"   --replace_string="$path_url" --target_file="$final_path/add_sso_conf.py"
-    ynh_replace_string --match_string="__PATH__"   --replace_string="$path_url" --target_file="$final_path/remove_sso_conf.py"
-else
-	ynh_replace_string --match_string="__PATH__"   --replace_string="" --target_file="$final_path/add_sso_conf.py"
-    ynh_replace_string --match_string="__PATH__"   --replace_string="" --target_file="$final_path/remove_sso_conf.py"
-fi
-ynh_replace_string --match_string="__DOMAIN__" --replace_string="$domain"   --target_file="$final_path/remove_sso_conf.py"
-
-
-python3 $final_path/add_sso_conf.py || ynh_die "Your file /etc/ssowat/conf.json.persistent don't respect the json synaxe. Please fix the synaxe to install this app. For more information see here : https://github.com/YunoHost-Apps/yourls_ynh"
-
 # Set permissions
 chown -R $app: $final_path
 
@@ -137,10 +121,6 @@ chown -R $app: $final_path
 
 # unprotected_uris allows SSO credentials to be passed anyway.
 ynh_app_setting_set --app=$app --key=unprotected_uris --value="/"
-
-# Restrict access to admin only
-yunohost app addaccess --users=$admin $app
-yunohost app ssowatconf
 
 #=================================================
 # RELOAD NGINX
