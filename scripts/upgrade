@@ -21,8 +21,6 @@ admin=$(ynh_app_setting_get --app=$app --key=admin)
 final_path=$(ynh_app_setting_get --app=$app --key=final_path)
 db_name=$(ynh_app_setting_get --app=$app --key=db_name)
 
-
-
 #=================================================
 # CHECK VERSION
 #=================================================
@@ -105,14 +103,6 @@ rm -Rf "$tmpdir"
 #=================================================
 ynh_script_progression --message="Upgrading nginx web server configuration..." --time --weight=1
 
-# Create a dedicated nginx config
-if [ "$path_url" != "/" ]; then
-	ynh_replace_string --match_string="__PATHTOCHANGE__" --replace_string="$path_url" --target_file="../conf/nginx.conf"
-else
-	ynh_replace_string --match_string="__PATHTOCHANGE__"  --replace_string=" "         --target_file="../conf/nginx.conf"
-fi
-
-# Create a dedicated nginx config
 ynh_add_nginx_config
 
 #=================================================

@@ -80,16 +80,8 @@ ynh_setup_source --dest_dir="$final_path"
 #=================================================
 # NGINX CONFIGURATION
 #=================================================
-ynh_script_progression --message="Configuring nginx web server..." --time --weight=1
+ynh_script_progression --message="Configuring NGINX web server..." --time --weight=1
 
-### `ynh_add_nginx_config` will use the file conf/nginx.conf
-
-# Create a dedicated nginx config
-if [ "$path_url" != "/" ]; then
-	ynh_replace_string --match_string="__PATHTOCHANGE__" --replace_string="$path_url" --target_file="../conf/nginx.conf"
-else
-	ynh_replace_string --match_string="__PATHTOCHANGE__"  --replace_string=" "         --target_file="../conf/nginx.conf"
-fi
 ynh_add_nginx_config
 
 #=================================================
@@ -103,7 +95,7 @@ ynh_system_user_create --username=$app
 #=================================================
 # PHP-FPM CONFIGURATION
 #=================================================
-ynh_script_progression --message="Configuring php-fpm..." --time --weight=1
+ynh_script_progression --message="Configuring PHP-FPM..." --time --weight=1
 
 # Create a dedicated php-fpm config
 ynh_add_fpm_config
@@ -114,15 +106,14 @@ sudo cp ../conf/index.php $final_path/
 #=================================================
 # MODIFY A CONFIG FILE
 #=================================================
-### `ynh_replace_string` is used to replace a string in a file.
-### (It's compatible with sed regular expressions syntax)
+
 sudo cp ../conf/config.php $final_path/user/config.php
-ynh_replace_string --match_string="yunouser" --replace_string="$db_name" --target_file="$final_path/user/config.php"
-ynh_replace_string --match_string="yunopass" --replace_string="$db_pwd" --target_file="$final_path/user/config.php"
-ynh_replace_string --match_string="yunobase" --replace_string="$db_name" --target_file="$final_path/user/config.php"
-ynh_replace_string --match_string="yunodomain" --replace_string="$domain" --target_file="$final_path/user/config.php"
-ynh_replace_string --match_string="_yourlspath" --replace_string="${path_url%/}" --target_file="$final_path/user/config.php"
-ynh_replace_string --match_string="modify this text with something random" --replace_string="$(ynh_string_random 24)$(ynh_string_random 24)" --target_file="$final_path/user/config.php"
+
+ynh_replace_string --match_string="__DB_NAME__" --replace_string="$db_name" --target_file="$final_path/user/config.php"
+ynh_replace_string --match_string="__DB_PASSWORD__" --replace_string="$db_pwd" --target_file="$final_path/user/config.php"
+ynh_replace_string --match_string="__DOMAIN__" --replace_string="$domain" --target_file="$final_path/user/config.php"
+ynh_replace_string --match_string="__PATH__" --replace_string="${path_url%/}" --target_file="$final_path/user/config.php"
+ynh_replace_string --match_string="__RANDOM__" --replace_string="$(ynh_string_random 24)" --target_file="$final_path/user/config.php"
 
 # The script "add_sso_conf.py" will just add en entry for the path "/admin" in the sso conf.json.persistent file in the cathegory "protected_urls".
 cp ../conf/add_sso_conf.py    $final_path/add_sso_conf.py

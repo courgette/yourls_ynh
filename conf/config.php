@@ -51,7 +51,7 @@ define( 'YOURLS_UNIQUE_URLS', true );
 define( 'YOURLS_PRIVATE', false );
 
 /** A random secret hash used to encrypt cookies. You don't have to remember it, make it long and complicated. Hint: copy from http://yourls.org/cookie **/
-define( 'YOURLS_COOKIEKEY', 'modify this text with something random' );
+define( 'YOURLS_COOKIEKEY', '__RANDOM__' );
 
 /** Username(s) and password(s) allowed to access the site. Passwords either in plain text or as encrypted hashes
  ** YOURLS will auto encrypt plain text passwords in this file
@@ -91,4 +91,3 @@ $yourls_reserved_URL = array(
 //define( 'LDAPAUTH_PORT', '389' );
 //define( 'LDAPAUTH_BASE', 'dc=yunohost,dc=org' );
 //define( 'LDAPAUTH_USERNAME_FIELD', 'uid');
-
