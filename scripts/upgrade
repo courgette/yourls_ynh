@@ -82,19 +82,6 @@ cp -a "$tmpdir/index.php" "$final_path"
 cp -a "$tmpdir/.htaccess" "$final_path"
 cp -a "$tmpdir/user/config.php" "$final_path/user"
 
-# The script "add_sso_conf.py" will just add en entry for the path "/admin" in the sso conf.json.persistent file in the cathegory "protected_urls".
-cp ../conf/add_sso_conf.py $final_path
-cp ../conf/remove_sso_conf.py $final_path
-ynh_replace_string --match_string="__DOMAIN__" --replace_string="$domain"   --target_file="$final_path/add_sso_conf.py"
-if [ "$path_url" != "/" ]; then
-	ynh_replace_string --match_string="__PATH__"   --replace_string="$path_url" --target_file="$final_path/add_sso_conf.py"
-    ynh_replace_string --match_string="__PATH__"   --replace_string="$path_url" --target_file="$final_path/remove_sso_conf.py"
-else
-	ynh_replace_string --match_string="__PATH__"   --replace_string="" --target_file="$final_path/add_sso_conf.py"
-    ynh_replace_string --match_string="__PATH__"   --replace_string="" --target_file="$final_path/remove_sso_conf.py"
-fi
-ynh_replace_string --match_string="__DOMAIN__" --replace_string="$domain"   --target_file="$final_path/remove_sso_conf.py"
-
 #remove tmp dir
 rm -Rf "$tmpdir"
 
