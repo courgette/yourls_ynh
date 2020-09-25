@@ -16,12 +16,11 @@ YOURLS stands for Your Own URL Shortener. It is a small set of PHP scripts that 
 
 ## Screenshots
 
-![](Link to a screenshot of this app.)
+![](https://yourls.org/images/stats-anim.gif)
 
 ## Demo
 
-* [Official demo](Link to a demo site for this app.)
-
+* [Official demo](https://yourls.org/cookie+)
 
 ## Configuration
 
@@ -54,7 +53,7 @@ How to configure this app: From an admin panel, a plain file with SSH, or any ot
 
 ## Links
 
- * Report a bug: https://github.com/YunoHost-Apps/REPLACEBYYOURAPP_ynh/issues
+ * Report a bug: https://github.com/YunoHost-Apps/yourls_ynh/issues
  * App website: https://yourls.org/
  * Upstream app repository: https://github.com/YOURLS/YOURLS
  * YunoHost website: https://yunohost.org/
