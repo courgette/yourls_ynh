@@ -1,5 +1,5 @@
-SOURCE_URL=https://github.com/YOURLS/YOURLS/archive/1.7.6.zip
-SOURCE_SUM=ee17c844b4eb7323e5b22e633631703ded18eef8ed75fc42eb950378fba4f442
+SOURCE_URL=https://github.com/YOURLS/YOURLS/archive/1.7.9.zip
+SOURCE_SUM=1cc4ecd97e4c143ca85d684d9a5ce0a79c4b359d85b76c7ca58f1babed8a5cfe
 SOURCE_SUM_PRG=sha256sum
 SOURCE_FORMAT=zip
 SOURCE_IN_SUBDIR=true
