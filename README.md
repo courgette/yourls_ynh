@@ -1,11 +1,11 @@
 # YOURLS for YunoHost
 
 [![Integration level](https://dash.yunohost.org/integration/yourls.svg)](https://dash.yunohost.org/appci/app/yourls) ![](https://ci-apps.yunohost.org/ci/badges/yourls.status.svg) ![](https://ci-apps.yunohost.org/ci/badges/yourls.maintain.svg)  
-[![Install yourls with YunoHost](https://install-app.yunohost.org/install-with-yunohost.png)](https://install-app.yunohost.org/?app=yourls)
+[![Install YOURLS with YunoHost](https://install-app.yunohost.org/install-with-yunohost.png)](https://install-app.yunohost.org/?app=yourls)
 
 *[Lire ce readme en français.](./README_fr.md)*
 
-> *This package allows you to install Yourls quickly and simply on a YunoHost server.  
+> *This package allows you to install YOURLS quickly and simply on a YunoHost server.  
 If you don't have YunoHost, please consult [the guide](https://yunohost.org/#/install) to learn how to install it.*
 
 ## Overview
