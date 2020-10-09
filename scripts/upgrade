@@ -133,7 +133,7 @@ ynh_store_file_checksum --file="$final_path/user/config.php"
 # SECURE FILES AND DIRECTORIES
 #=================================================
 
-# Set right permissions for curl installation
+# Restore permissions on app files
 chown -R $app: $final_path
 
 #=================================================

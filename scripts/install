@@ -108,7 +108,13 @@ ynh_replace_string --match_string="__DOMAIN__" --replace_string="$domain" --targ
 ynh_replace_string --match_string="__PATH__" --replace_string="${path_url%/}" --target_file="$final_path/user/config.php"
 ynh_replace_string --match_string="__RANDOM__" --replace_string="$(ynh_string_random 24)" --target_file="$final_path/user/config.php"
 
-# Set permissions
+# Calculate and store the config file checksum into the app settings
+ynh_store_file_checksum "$final_path/user/config.php"
+
+#=================================================
+# SECURE FILES AND DIRECTORIES
+#=================================================
+
 chown -R $app: $final_path
 
 # Reload Nginx and regenerate SSOwat conf
@@ -124,12 +130,9 @@ ynh_script_progression --message="Reloading NGINX web server..." --weight=3
 ynh_systemd_action --service_name=nginx --action=reload
 sleep 10
 
-# Start Yourls install (database table creation)
+# Start YOURLS install (database table creation)
 ynh_local_curl "admin/install.php" "install=dummy" 
 sleep 10
-
-# Calculate and store the config file checksum into the app settings
-ynh_store_file_checksum "$final_path/user/config.php"
 
 #=================================================
 # SETUP SSOWAT
