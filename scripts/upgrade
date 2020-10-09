@@ -144,7 +144,6 @@ ynh_app_setting_set --app=$app --key=unprotected_uris --value="/"
 
 # Restrict access to admin only
 yunohost app addaccess --users=$admin $app
-yunohost app ssowatconf
 
 #=================================================
 # RELOAD NGINX
