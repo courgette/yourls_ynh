@@ -8,20 +8,20 @@
  */
 
 /** MySQL database username */
-define( 'YOURLS_DB_USER', 'yunouser' );
+define( 'YOURLS_DB_USER', '__DB_NAME__' );
 
 /** MySQL database password */
-define( 'YOURLS_DB_PASS', 'yunopass' );
+define( 'YOURLS_DB_PASS', '__DB_PASSWORD__' );
 
 /** The name of the database for YOURLS */
-define( 'YOURLS_DB_NAME', 'yunobase' );
+define( 'YOURLS_DB_NAME', '__DB_NAME__' );
 
 /** MySQL hostname.
  ** If using a non standard port, specify it like 'hostname:port', eg. 'localhost:9999' or '127.0.0.1:666' */
 define( 'YOURLS_DB_HOST', 'localhost' );
 
 /** MySQL tables prefix */
-define( 'YOURLS_DB_PREFIX', 'yourls_' );
+define( 'YOURLS_DB_PREFIX', '__DB_NAME___' );
 
 /*
  ** Site options
@@ -29,7 +29,7 @@ define( 'YOURLS_DB_PREFIX', 'yourls_' );
 
 /** YOURLS installation URL -- all lowercase and with no trailing slash.
  ** If you define it to "http://site.com", don't use "http://www.site.com" in your browser (and vice-versa) */
-define( 'YOURLS_SITE', 'https://yunodomain_yourlspath' );
+define( 'YOURLS_SITE', 'https://__DOMAIN____PATH__' );
 
 /** Timezone GMT offset */
 define( 'YOURLS_HOURS_OFFSET', 0 );
@@ -51,7 +51,7 @@ define( 'YOURLS_UNIQUE_URLS', true );
 define( 'YOURLS_PRIVATE', false );
 
 /** A random secret hash used to encrypt cookies. You don't have to remember it, make it long and complicated. Hint: copy from http://yourls.org/cookie **/
-define( 'YOURLS_COOKIEKEY', 'modify this text with something random' );
+define( 'YOURLS_COOKIEKEY', '__RANDOM__' );
 
 /** Username(s) and password(s) allowed to access the site. Passwords either in plain text or as encrypted hashes
  ** YOURLS will auto encrypt plain text passwords in this file
@@ -91,4 +91,3 @@ $yourls_reserved_URL = array(
 //define( 'LDAPAUTH_PORT', '389' );
 //define( 'LDAPAUTH_BASE', 'dc=yunohost,dc=org' );
 //define( 'LDAPAUTH_USERNAME_FIELD', 'uid');
-
