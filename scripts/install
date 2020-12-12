@@ -94,13 +94,13 @@ ynh_add_fpm_config --phpversion=$YNH_PHP_VERSION --package="$extra_php_dependenc
 phpversion=$(ynh_app_setting_get --app=$app --key=phpversion)
 
 # copy index file 
-sudo cp ../conf/index.php $final_path/
+cp ../conf/index.php $final_path/
 
 #=================================================
 # MODIFY A CONFIG FILE
 #=================================================
 
-sudo cp ../conf/config.php $final_path/user/config.php
+cp ../conf/config.php $final_path/user/config.php
 
 ynh_replace_string --match_string="__DB_NAME__" --replace_string="$db_name" --target_file="$final_path/user/config.php"
 ynh_replace_string --match_string="__DB_PASSWORD__" --replace_string="$db_pwd" --target_file="$final_path/user/config.php"

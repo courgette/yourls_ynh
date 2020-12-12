@@ -85,7 +85,7 @@ cp -a "$tmpdir/.htaccess" "$final_path"
 cp -a "$tmpdir/user/config.php" "$final_path/user"
 
 #remove tmp dir
-rm -Rf "$tmpdir"
+ynh_secure_remove "$tmpdir"
 
 #=================================================
 # NGINX CONFIGURATION
