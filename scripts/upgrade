@@ -20,19 +20,13 @@ path_url=$(ynh_app_setting_get --app=$app --key=path)
 admin=$(ynh_app_setting_get --app=$app --key=admin)
 final_path=$(ynh_app_setting_get --app=$app --key=final_path)
 db_name=$(ynh_app_setting_get --app=$app --key=db_name)
+db_pwd=$(ynh_app_setting_get --app=$app --key=mysqlpwd)
+phpversion=$(ynh_app_setting_get --app=$app --key=phpversion)
 
-
-
-=================================================
+#=================================================
 # CHECK VERSION
 #=================================================
 
-### This helper will compare the version of the currently installed app and the version of the upstream package.
-### $upgrade_type can have 2 different values
-### - UPGRADE_APP if the upstream app version has changed
-### - UPGRADE_PACKAGE if only the YunoHost package has changed
-### ynh_check_app_version_changed will stop the upgrade if the app is up to date.
-### UPGRADE_APP should be used to upgrade the core app only if there's an upgrade to do.
 upgrade_type=$(ynh_check_app_version_changed)
 
 #=================================================
@@ -53,7 +47,7 @@ fi
 #=================================================
 # BACKUP BEFORE UPGRADE THEN ACTIVE TRAP
 #=================================================
-ynh_script_progression --message="Backing up the app before upgrading (may take a while)..." --time --weight=1
+ynh_script_progression --message="Backing up YOURLS before upgrading (may take a while)..." --weight=1
 
 # Backup the current version of the app
 ynh_backup_before_upgrade
@@ -63,18 +57,6 @@ ynh_clean_setup () {
 }
 # Exit if an error occurs during the execution of the script
 ynh_abort_if_errors
-
-#=================================================
-# CHECK THE PATH
-#=================================================
-
-# Normalize the URL path syntax
-# N.B. : this is for app installations before YunoHost 2.7
-# where this value might be something like /foo/ or foo/
-# instead of /foo ....
-# If nobody installed your app before 2.7, then you may
-# safely remove this line
-path_url=$(ynh_normalize_url_path --path_url=$path_url)
 
 #=================================================
 # STANDARD UPGRADE STEPS
@@ -102,48 +84,20 @@ cp -a "$tmpdir/index.php" "$final_path"
 cp -a "$tmpdir/.htaccess" "$final_path"
 cp -a "$tmpdir/user/config.php" "$final_path/user"
 
-# The script "add_sso_conf.py" will just add en entry for the path "/admin" in the sso conf.json.persistent file in the cathegory "protected_urls".
-cp ../conf/add_sso_conf.py $final_path
-cp ../conf/remove_sso_conf.py $final_path
-ynh_replace_string --match_string="__DOMAIN__" --replace_string="$domain"   --target_file="$final_path/add_sso_conf.py"
-if [ "$path_url" != "/" ]; then
-	ynh_replace_string --match_string="__PATH__"   --replace_string="$path_url" --target_file="$final_path/add_sso_conf.py"
-    ynh_replace_string --match_string="__PATH__"   --replace_string="$path_url" --target_file="$final_path/remove_sso_conf.py"
-else
-	ynh_replace_string --match_string="__PATH__"   --replace_string="" --target_file="$final_path/add_sso_conf.py"
-    ynh_replace_string --match_string="__PATH__"   --replace_string="" --target_file="$final_path/remove_sso_conf.py"
-fi
-ynh_replace_string --match_string="__DOMAIN__" --replace_string="$domain"   --target_file="$final_path/remove_sso_conf.py"
-
 #remove tmp dir
 rm -Rf "$tmpdir"
 
 #=================================================
 # NGINX CONFIGURATION
 #=================================================
-ynh_script_progression --message="Upgrading nginx web server configuration..." --time --weight=1
+ynh_script_progression --message="Upgrading NGINX web server configuration..." --weight=1
 
-# Create a dedicated nginx config
-if [ "$path_url" != "/" ]; then
-	ynh_replace_string --match_string="__PATHTOCHANGE__" --replace_string="$path_url" --target_file="../conf/nginx.conf"
-else
-	ynh_replace_string --match_string="__PATHTOCHANGE__"  --replace_string=" "         --target_file="../conf/nginx.conf"
-fi
-
-# Create a dedicated nginx config
 ynh_add_nginx_config
-
-#=================================================
-# UPGRADE DEPENDENCIES
-#=================================================
-ynh_script_progression --message="Upgrading dependencies..." --time --weight=1
-
-ynh_install_app_dependencies $pkg_dependencies
 
 #=================================================
 # CREATE DEDICATED USER
 #=================================================
-ynh_script_progression --message="Making sure dedicated system user exists..." --time --weight=1
+ynh_script_progression --message="Making sure dedicated system user exists..." --weight=3
 
 # Create a dedicated user (if not existing)
 ynh_system_user_create --username=$app
@@ -151,17 +105,35 @@ ynh_system_user_create --username=$app
 #=================================================
 # PHP-FPM CONFIGURATION
 #=================================================
-ynh_script_progression --message="Upgrading php-fpm configuration..." --time --weight=1
+ynh_script_progression --message="Upgrading PHP-FPM configuration..." --weight=4
 
-# Create a dedicated php-fpm config
-ynh_add_fpm_config
+# Create a dedicated PHP-FPM config
+ynh_add_fpm_config --phpversion=$YNH_PHP_VERSION --package="$extra_php_dependencies"
+
+#=================================================
+# MODIFY A CONFIG FILE
+#=================================================
+ynh_script_progression --message="Modifying a config file..." --weight=2
 
 # Verify the checksum and backup the file if it's different
 ynh_backup_if_checksum_is_different --file="$final_path/user/config.php"
+
+sudo cp ../conf/config.php $final_path/user/config.php
+
+ynh_replace_string --match_string="__DB_NAME__" --replace_string="$db_name" --target_file="$final_path/user/config.php"
+ynh_replace_string --match_string="__DB_PASSWORD__" --replace_string="$db_pwd" --target_file="$final_path/user/config.php"
+ynh_replace_string --match_string="__DOMAIN__" --replace_string="$domain" --target_file="$final_path/user/config.php"
+ynh_replace_string --match_string="__PATH__" --replace_string="${path_url%/}" --target_file="$final_path/user/config.php"
+ynh_replace_string --match_string="__RANDOM__" --replace_string="$(ynh_string_random 24)" --target_file="$final_path/user/config.php"
+
 # Recalculate and store the config file checksum into the app settings
 ynh_store_file_checksum --file="$final_path/user/config.php"
 
-# Set right permissions for curl installation
+#=================================================
+# SECURE FILES AND DIRECTORIES
+#=================================================
+
+# Restore permissions on app files
 chown -R $app: $final_path
 
 #=================================================
@@ -172,13 +144,11 @@ ynh_app_setting_set --app=$app --key=unprotected_uris --value="/"
 
 # Restrict access to admin only
 yunohost app addaccess --users=$admin $app
-yunohost app ssowatconf
-
 
 #=================================================
 # RELOAD NGINX
 #=================================================
-ynh_script_progression --message="Reloading nginx web server..." --time --weight=1
+ynh_script_progression --message="Reloading NGINX web server..." --weight=1
 
 ynh_systemd_action --service_name=nginx --action=reload
 
@@ -186,4 +156,4 @@ ynh_systemd_action --service_name=nginx --action=reload
 # END OF SCRIPT
 #=================================================
 
-ynh_script_progression --message="Upgrade of $app completed" --time --last
+ynh_script_progression --message="Upgrade of YOURLS completed" --last
