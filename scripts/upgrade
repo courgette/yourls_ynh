@@ -137,15 +137,6 @@ ynh_store_file_checksum --file="$final_path/user/config.php"
 chown -R $app: $final_path
 
 #=================================================
-# SETUP SSOWAT
-#=================================================
-
-ynh_app_setting_set --app=$app --key=unprotected_uris --value="/"
-
-# Restrict access to admin only
-yunohost app addaccess --users=$admin $app
-
-#=================================================
 # RELOAD NGINX
 #=================================================
 ynh_script_progression --message="Reloading NGINX web server..." --weight=1
