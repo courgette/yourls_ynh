@@ -43,7 +43,6 @@ ynh_script_progression --message="Removing YOURLS main directory..." --weight=4
 # Remove the app directory securely
 ynh_secure_remove --file="$final_path"
 
-
 #=================================================
 # REMOVE NGINX CONFIGURATION
 #=================================================
