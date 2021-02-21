@@ -11,7 +11,7 @@
 define('YOURLS_DB_USER', '__DB_NAME__');
 
 /** MySQL database password */
-define('YOURLS_DB_PASS', '__DB_PASSWORD__');
+define('YOURLS_DB_PASS', '__DB_PWD__');
 
 /** The name of the database for YOURLS */
 define('YOURLS_DB_NAME', '__DB_NAME__');

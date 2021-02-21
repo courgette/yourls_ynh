@@ -32,7 +32,6 @@ app=$YNH_APP_INSTANCE_NAME
 #=================================================
 # CHECK IF THE APP CAN BE INSTALLED WITH THESE ARGS
 #=================================================
-
 ynh_script_progression --message="Validating installation parameters..." --weight=1
 
 final_path=/var/www/$app
@@ -103,7 +102,7 @@ cp ../conf/index.php $final_path/
 cp ../conf/config.php $final_path/user/config.php
 
 ynh_replace_string --match_string="__DB_NAME__" --replace_string="$db_name" --target_file="$final_path/user/config.php"
-ynh_replace_string --match_string="__DB_PASSWORD__" --replace_string="$db_pwd" --target_file="$final_path/user/config.php"
+ynh_replace_string --match_string="__DB_PWD__" --replace_string="$db_pwd" --target_file="$final_path/user/config.php"
 ynh_replace_string --match_string="__DOMAIN__" --replace_string="$domain" --target_file="$final_path/user/config.php"
 ynh_replace_string --match_string="__PATH__" --replace_string="${path_url%/}" --target_file="$final_path/user/config.php"
 ynh_replace_string --match_string="__RANDOM__" --replace_string="$(ynh_string_random 24)" --target_file="$final_path/user/config.php"

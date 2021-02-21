@@ -126,10 +126,10 @@ ynh_script_progression --message="Modifying a config file..." --weight=2
 # Verify the checksum and backup the file if it's different
 ynh_backup_if_checksum_is_different --file="$final_path/user/config.php"
 
-sudo cp ../conf/config.php $final_path/user/config.php
+cp ../conf/config.php $final_path/user/config.php
 
 ynh_replace_string --match_string="__DB_NAME__" --replace_string="$db_name" --target_file="$final_path/user/config.php"
-ynh_replace_string --match_string="__DB_PASSWORD__" --replace_string="$db_pwd" --target_file="$final_path/user/config.php"
+ynh_replace_string --match_string="__DB_PWD__" --replace_string="$db_pwd" --target_file="$final_path/user/config.php"
 ynh_replace_string --match_string="__DOMAIN__" --replace_string="$domain" --target_file="$final_path/user/config.php"
 ynh_replace_string --match_string="__PATH__" --replace_string="${path_url%/}" --target_file="$final_path/user/config.php"
 ynh_replace_string --match_string="__RANDOM__" --replace_string="$(ynh_string_random 24)" --target_file="$final_path/user/config.php"
