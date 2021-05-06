@@ -32,7 +32,6 @@ app=$YNH_APP_INSTANCE_NAME
 #=================================================
 # CHECK IF THE APP CAN BE INSTALLED WITH THESE ARGS
 #=================================================
-
 ynh_script_progression --message="Validating installation parameters..." --weight=1
 
 final_path=/var/www/$app
@@ -90,7 +89,7 @@ ynh_system_user_create --username=$app
 ynh_script_progression --message="Configuring PHP-FPM..." --weight=2
 
 # Create a dedicated php-fpm config
-ynh_add_fpm_config --phpversion=$YNH_PHP_VERSION --package="$extra_php_dependencies"
+ynh_add_fpm_config --package="$extra_php_dependencies"
 phpversion=$(ynh_app_setting_get --app=$app --key=phpversion)
 
 # copy index file 
@@ -103,7 +102,7 @@ cp ../conf/index.php $final_path/
 cp ../conf/config.php $final_path/user/config.php
 
 ynh_replace_string --match_string="__DB_NAME__" --replace_string="$db_name" --target_file="$final_path/user/config.php"
-ynh_replace_string --match_string="__DB_PASSWORD__" --replace_string="$db_pwd" --target_file="$final_path/user/config.php"
+ynh_replace_string --match_string="__DB_PWD__" --replace_string="$db_pwd" --target_file="$final_path/user/config.php"
 ynh_replace_string --match_string="__DOMAIN__" --replace_string="$domain" --target_file="$final_path/user/config.php"
 ynh_replace_string --match_string="__PATH__" --replace_string="${path_url%/}" --target_file="$final_path/user/config.php"
 ynh_replace_string --match_string="__RANDOM__" --replace_string="$(ynh_string_random 24)" --target_file="$final_path/user/config.php"
@@ -116,11 +115,15 @@ ynh_store_file_checksum "$final_path/user/config.php"
 #=================================================
 
 chown -R $app: $final_path
+chmod 600 $final_path/user/config.php
 
-# Reload Nginx and regenerate SSOwat conf
+#=================================================
+# SETUP SSOWAT
+#=================================================
+ynh_script_progression --message="Configuring permissions..." --time --weight=1
 
 # unprotected_uris allows SSO credentials to be passed anyway.
-ynh_app_setting_set --app=$app --key=unprotected_uris --value="/"
+ynh_permission_update --permission="main" --add="visitors"
 
 #=================================================
 # RELOAD NGINX

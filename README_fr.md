@@ -1,7 +1,7 @@
 # YOURLS pour YunoHost
 
 [![Niveau d'intégration](https://dash.yunohost.org/integration/yourls.svg)](https://dash.yunohost.org/appci/app/yourls) ![](https://ci-apps.yunohost.org/ci/badges/yourls.status.svg) ![](https://ci-apps.yunohost.org/ci/badges/yourls.maintain.svg)  
-[![Installer YOURLS avec YunoHost](https://install-app.yunohost.org/install-with-yunohost.png)](https://install-app.yunohost.org/?app=yourls)
+[![Installer YOURLS avec YunoHost](https://install-app.yunohost.org/install-with-yunohost.svg)](https://install-app.yunohost.org/?app=yourls)
 
 *[Read this readme in english.](./README.md)* 
 
@@ -11,7 +11,7 @@ Si vous n'avez pas YunoHost, consultez [le guide](https://yunohost.org/#/install
 ## Vue d'ensemble
 YOURLS signifie Your Own URL Shortener. C'est un petit ensemble de scripts PHP qui vous permettront d'exécuter votre propre service de raccourcissement d'URL (à la TinyURL ou bitly).
 
-**Version incluse :** 1.7.9
+**Version incluse :** 1.8.1
 
 ## Captures d'écran
 
