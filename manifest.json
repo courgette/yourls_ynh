@@ -6,7 +6,7 @@
         "en": "URL shortening service",
         "fr": "Service de raccourcisseur d'URL"
     },
-    "version": "1.7.9~ynh1",
+    "version": "1.8.1~ynh1",
     "url": "https://github.com/YOURLS/YOURLS",
     "license": "MIT",
     "maintainer": {
@@ -15,8 +15,8 @@
         "url": ""
     },
     "requirements": {
-        "yunohost": ">= 3.8.1"
-    }, 
+        "yunohost": ">= 4.1.7"
+    },
     "previous_maintainers": {
         "name": "courgette",
         "email": "courgette@farcie.fr",
@@ -25,7 +25,7 @@
     "multi_instance": true,
     "services": [
         "nginx",
-        "php7.0-fpm",
+        "php7.3-fpm",
         "mysql"
     ],
     "arguments": {
@@ -33,29 +33,17 @@
             {
                 "name": "domain",
                 "type": "domain",
-                "ask": {
-                    "en": "Choose a domain for YOURLS",
-                    "fr": "Choisissez un domaine pour YOURLS"
-                },
                 "example": "domain.org"
             },
             {
                 "name": "path",
                 "type": "path",
-                "ask": {
-                    "en": "Choose a path for YOURLS",
-                    "fr": "Choisissez un chemin pour YOURLS"
-                },
                 "example": "/yourls",
                 "default": "/yourls"
             },
             {
                 "name": "admin",
                 "type": "user",
-                "ask": {
-                    "en": "Choose an admin user",
-                    "fr": "Choisissez l'administrateur"
-                },
                 "example": "johndoe"
             }
         ]
