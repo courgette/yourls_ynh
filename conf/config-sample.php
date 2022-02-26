@@ -89,9 +89,3 @@ $yourls_reserved_URL = [
 /*
  ** Personal settings would go after here.
  */
-
-//define( 'LDAPAUTH_HOST', 'localhost' );
-//define( 'LDAPAUTH_PORT', '389' );
-//define( 'LDAPAUTH_BASE', 'dc=yunohost,dc=org' );
-//define( 'LDAPAUTH_USERNAME_FIELD', 'uid');
-//require_once(dirname(__DIR__) . '/includes/functions-auth.php');
