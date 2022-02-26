@@ -6,12 +6,9 @@
   <link rel="stylesheet" href="css/style.css"/>
 </head>
 <body>
-  <div id="wrap">
     <div id="login">
       <p><img src="images/yourls-logo.png" alt=""></p>
-      <p><a href="admin">Admin page</a></p>
-    </div>
-  </div>
-  
+      <p><a href="admin">Admin interface</a></p>
+    </div>  
 </body>
 </html>
