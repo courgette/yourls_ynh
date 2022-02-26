@@ -26,7 +26,8 @@ ynh_abort_if_errors
 domain=$YNH_APP_ARG_DOMAIN
 path_url=$YNH_APP_ARG_PATH
 admin=$YNH_APP_ARG_ADMIN
-random=$(ynh_string_random 24)
+password=$YNH_APP_ARG_PASSWORD
+random=$(ynh_string_random --length=24)
 
 app=$YNH_APP_INSTANCE_NAME
 
