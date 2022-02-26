@@ -130,14 +130,14 @@ ynh_permission_update --permission="main" --add="visitors"
 #=================================================
 # RELOAD NGINX
 #=================================================
-ynh_script_progression --message="Reloading NGINX web server..." --weight=3
+#ynh_script_progression --message="Reloading NGINX web server..." --weight=3
 
-ynh_systemd_action --service_name=nginx --action=reload
-sleep 10
+#ynh_systemd_action --service_name=nginx --action=reload
+#sleep 10
 
 # Start YOURLS install (database table creation)
-ynh_local_curl "admin/install.php" "install=dummy" 
-sleep 10
+#ynh_local_curl "admin/install.php" "install=dummy" 
+#sleep 10
 
 #=================================================
 # RELOAD NGINX
