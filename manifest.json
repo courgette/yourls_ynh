@@ -15,12 +15,11 @@
         "demo": "https://yourls.org/cookie+",
         "admindoc": "https://yunohost.org/packaging_apps",
         "userdoc": "https://yunohost.org/apps",
-        "code": "ttps://github.com/YOURLS/YOURLS"
+        "code": "https://github.com/YOURLS/YOURLS"
     },
     "maintainer": {
         "name": "Anmol Sharma",
-        "email": "anmol@datamol.org",
-        "url": ""
+        "email": "anmol@datamol.org"
     },
     "previous_maintainers": {
         "name": "courgette",
