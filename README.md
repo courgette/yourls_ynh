@@ -21,12 +21,16 @@ YOURLS stands for Your Own URL Shortener. It is a small set of PHP scripts that 
 
 **Demo:** https://yourls.org/cookie+
 
+## Screenshots
+
+![](./doc/screenshots/p4.png)
+
 ## Documentation and resources
 
 * Official app website: https://yourls.org/
 * Official user documentation: https://yunohost.org/apps
 * Official admin documentation: https://yunohost.org/packaging_apps
-* Upstream app code repository: ttps://github.com/YOURLS/YOURLS
+* Upstream app code repository: https://github.com/YOURLS/YOURLS
 * YunoHost documentation for this app: https://yunohost.org/app_yourls
 * Report a bug: https://github.com/YunoHost-Apps/yourls_ynh/issues
 
