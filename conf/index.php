@@ -2,7 +2,7 @@
 <html lang="en-US">
 <head>
   <meta charset="UTF-8">
-  <title></title>
+  <title>YOURLS</title>
   <link rel="stylesheet" href="css/style.css"/>
 </head>
 <body>
