@@ -53,11 +53,6 @@
             {
                 "name": "password",
                 "type": "password"
-            },
-            {
-                "name": "is_public",
-                "type": "boolean",
-                "default": true
             }
         ]
     }

@@ -26,7 +26,6 @@ ynh_abort_if_errors
 domain=$YNH_APP_ARG_DOMAIN
 path_url=$YNH_APP_ARG_PATH
 admin=$YNH_APP_ARG_ADMIN
-is_public=$YNH_APP_ARG_IS_PUBLIC
 password="$YNH_APP_ARG_PASSWORD"
 random=$(ynh_string_random --length=24)
 
@@ -53,6 +52,7 @@ ynh_app_setting_set --app=$app --key=path --value=$path_url
 ynh_app_setting_set --app=$app --key=admin --value=$admin
 ynh_app_setting_set --app=$app --key=random --value=$random
 ynh_app_setting_set --app=$app --key=password --value="$password"
+
 #=================================================
 # INSTALL DEPENDENCIES
 #=================================================
@@ -134,21 +134,10 @@ ynh_permission_update --permission="main" --add="visitors"
 ynh_script_progression --message="Finalizing installation..." --weight=1
 ynh_local_curl "admin/install.php" "install=dummy"
 
-# Remove the public access
-ynh_permission_update --permission="main" --remove="visitors"
-
 #=================================================
 # SETUP SSOWAT
 #=================================================
 ynh_script_progression --message="Configuring permissions..." --weight=1
-
-# Make app public if necessary
-if [ $is_public -eq 1 ]
-then
-	# Everyone can access the app.
-	# The "main" permission is automatically created before the install script.
-	ynh_permission_update --permission="main" --add="visitors"
-fi
 
 # Only the admin can access the admin panel of the app (if the app has an admin panel)
 ynh_permission_create --permission="admin" --url="/admin" --allowed=$admin
