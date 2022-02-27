@@ -13,8 +13,7 @@
         "license": "MIT",
         "website": "https://yourls.org/",
         "demo": "https://yourls.org/cookie+",
-        "admindoc": "https://yunohost.org/packaging_apps",
-        "userdoc": "https://yunohost.org/apps",
+        "admindoc": "https://github.com/YOURLS/YOURLS/wiki",
         "code": "https://github.com/YOURLS/YOURLS"
     },
     "maintainer": {
