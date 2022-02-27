@@ -39,6 +39,8 @@ define( 'YOURLS_DB_PREFIX', 'yourls_' );
  ** To use an IDN domain (eg http://héhé.com), write its ascii form here (eg http://xn--hh-bjab.com) */
 define( 'YOURLS_SITE', 'http://__DOMAIN____PATH__' );
 
+define('YOURLS_ADMIN_SSL', true);
+
 /** YOURLS language
  ** Change this setting to use a translation file for your language, instead of the default English.
  ** That translation file (a .mo file) must be installed in the user/language directory.
