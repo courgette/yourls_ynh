@@ -8,7 +8,6 @@
     },
     "version": "1.8.2~ynh1",
     "url": "https://yourls.org/",
-    "license": "MIT",
     "upstream": {
         "license": "MIT",
         "website": "https://yourls.org/",
@@ -16,6 +15,7 @@
         "admindoc": "https://github.com/YOURLS/YOURLS/wiki",
         "code": "https://github.com/YOURLS/YOURLS"
     },
+    "license": "MIT",
     "maintainer": {
         "name": "Anmol Sharma",
         "email": "anmol@datamol.org"
@@ -31,7 +31,7 @@
     "multi_instance": true,
     "services": [
         "nginx",
-        "php7.3-fpm",
+        "php7.4-fpm",
         "mysql"
     ],
     "arguments": {
