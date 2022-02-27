@@ -31,7 +31,7 @@
     "multi_instance": true,
     "services": [
         "nginx",
-        "php7.3-fpm",
+        "php7.4-fpm",
         "mysql"
     ],
     "arguments": {
@@ -61,7 +61,7 @@
                     "en": "Choose the application language",
                     "fr": "Choisissez la langue de l'application"
                 },
-                "choices": ["fr_FR", "en_EN"],
+                "choices": ["fr_FR", "en_US"],
                 "default": "fr_FR"
             },
         ]
