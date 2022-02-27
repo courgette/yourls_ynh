@@ -29,6 +29,7 @@ admin=$YNH_APP_ARG_ADMIN
 is_public=$YNH_APP_ARG_IS_PUBLIC
 password="$YNH_APP_ARG_PASSWORD"
 random=$(ynh_string_random --length=24)
+language=$YNH_APP_ARG_LANGUAGE
 
 app=$YNH_APP_INSTANCE_NAME
 
@@ -53,6 +54,8 @@ ynh_app_setting_set --app=$app --key=path --value=$path_url
 ynh_app_setting_set --app=$app --key=admin --value=$admin
 ynh_app_setting_set --app=$app --key=random --value=$random
 ynh_app_setting_set --app=$app --key=password --value="$password"
+ynh_app_setting_set --app=$app --key=language --value=$language
+
 #=================================================
 # INSTALL DEPENDENCIES
 #=================================================
@@ -86,6 +89,8 @@ ynh_script_progression --message="Setting up source files..." --weight=4
 ynh_app_setting_set --app=$app --key=final_path --value=$final_path
 # Download, check integrity, uncompress and patch the source from app.src
 ynh_setup_source --dest_dir="$final_path"
+
+ynh_setup_source --dest_dir="$final_path/user/languages" --source_id="fr"
 
 # copy index file 
 cp ../conf/index.php $final_path/

@@ -1,0 +1,5 @@
+SOURCE_URL=https://github.com/ozh/YOURLS-fr_FR/archive/refs/tags/1.8.zip
+SOURCE_SUM=ef9c0e71d4559994b9df0cd0a558f6faf11eba185c4793ba0e30f3500dab1b04
+SOURCE_SUM_PRG=sha256sum
+SOURCE_FORMAT=zip
+SOURCE_IN_SUBDIR=true

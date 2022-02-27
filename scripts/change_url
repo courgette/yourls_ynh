@@ -34,6 +34,7 @@ db_pwd=$(ynh_app_setting_get --app=$app --key=mysqlpwd)
 admin=$(ynh_app_setting_get --app=$app --key=admin)
 random=$(ynh_app_setting_get --app=$app --key=random)
 password=$(ynh_app_setting_get --app=$app --key=password)
+language=$(ynh_app_setting_get --app=$app --key=language)
 
 #=================================================
 # BACKUP BEFORE CHANGE URL THEN ACTIVE TRAP
