@@ -47,6 +47,7 @@ ynh_abort_if_errors
 #=================================================
 # ENSURE DOWNWARD COMPATIBILITY
 #=================================================
+ynh_script_progression --message="Ensuring downward compatibility..." --weight=1
 
 # If db_name doesn't exist, create it
 if [ -z "$db_name" ]; then
