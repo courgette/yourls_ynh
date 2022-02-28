@@ -61,8 +61,8 @@
                     "en": "Choose the application language",
                     "fr": "Choisissez la langue de l'application"
                 },
-                "choices": ["fr-FR", "en-US"],
-                "default": "fr-FR"
+                "choices": ["fr_FR", "en_US"],
+                "default": "fr_FR"
             }
         ]
     }
