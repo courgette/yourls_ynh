@@ -2,7 +2,7 @@
 <html lang="en-US">
 <head>
   <meta charset="UTF-8">
-  <title>YOURLS</title>
+  <title>YOURLS — Your Own URL Shortener</title>
   <link rel="stylesheet" href="css/style.css"/>
 </head>
 <body>

@@ -8,7 +8,6 @@
     },
     "version": "1.8.2~ynh1",
     "url": "https://yourls.org/",
-    "license": "MIT",
     "upstream": {
         "license": "MIT",
         "website": "https://yourls.org/",
@@ -16,6 +15,7 @@
         "admindoc": "https://github.com/YOURLS/YOURLS/wiki",
         "code": "https://github.com/YOURLS/YOURLS"
     },
+    "license": "MIT",
     "maintainer": {
         "name": "Anmol Sharma",
         "email": "anmol@datamol.org"
@@ -53,17 +53,7 @@
             {
                 "name": "password",
                 "type": "password"
-            },
-            {
-                "name": "language",
-                "type": "string",
-                "ask": {
-                    "en": "Choose the application language",
-                    "fr": "Choisissez la langue de l'application"
-                },
-                "choices": ["fr", "en"],
-                "default": "fr"
-            },
+            }
         ]
     }
 }
