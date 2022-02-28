@@ -29,6 +29,7 @@ admin=$YNH_APP_ARG_ADMIN
 password="$YNH_APP_ARG_PASSWORD"
 random=$(ynh_string_random --length=24)
 language=$YNH_APP_ARG_LANGUAGE
+phpversion=$YNH_PHP_VERSION
 
 app=$YNH_APP_INSTANCE_NAME
 
@@ -111,9 +112,8 @@ ynh_add_nginx_config
 #=================================================
 ynh_script_progression --message="Configuring PHP-FPM..." --weight=2
 
-# Create a dedicated php-fpm config
+# Create a dedicated PHP-FPM config
 ynh_add_fpm_config
-phpversion=$(ynh_app_setting_get --app=$app --key=phpversion)
 
 #=================================================
 # ADD A CONFIGURATION
