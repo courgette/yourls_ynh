@@ -3,6 +3,7 @@
 		domain="domain.tld"
 		path="/path"
 		admin="john"
+		language="fr_FR"
 		password="1Strong-Password"
 	; Checks
 		pkg_linter=1
