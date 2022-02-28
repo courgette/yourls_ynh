@@ -28,7 +28,6 @@ path_url=$YNH_APP_ARG_PATH
 admin=$YNH_APP_ARG_ADMIN
 password="$YNH_APP_ARG_PASSWORD"
 random=$(ynh_string_random --length=24)
-language=$YNH_APP_ARG_LANGUAGE
 
 app=$YNH_APP_INSTANCE_NAME
 
@@ -88,14 +87,7 @@ ynh_app_setting_set --app=$app --key=final_path --value=$final_path
 # Download, check integrity, uncompress and patch the source from app.src
 ynh_setup_source --dest_dir="$final_path"
 
-if [ "$language" == "fr" ]; then
-	language="fr-FR"
-	ynh_setup_source --dest_dir="$final_path/user/languages" --source_id="fr"
-	ynh_app_setting_set --app=$app --key=language --value=$language
-else
-	language=""
-	ynh_app_setting_set --app=$app --key=language --value=$language
-fi
+ynh_setup_source --dest_dir="$final_path/user/languages" --source_id="fr"
 
 # copy index file 
 cp ../conf/index.php $final_path/
