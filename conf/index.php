@@ -8,7 +8,7 @@
 <body>
     <div id="login">
       <p><img src="images/yourls-logo.png" alt=""></p>
-      <p><a href="admin">Admin interface</a></p>
+      <p><a href="admin">Administration interface</a></p>
     </div>  
 </body>
 </html>
