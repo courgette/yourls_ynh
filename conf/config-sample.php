@@ -45,7 +45,7 @@ define('YOURLS_ADMIN_SSL', true);
  ** Change this setting to use a translation file for your language, instead of the default English.
  ** That translation file (a .mo file) must be installed in the user/language directory.
  ** See http://yourls.org/translations for more information */
-define( 'YOURLS_LANG', 'fr_FR' );
+define( 'YOURLS_LANG', '__LANGUAGE__' );
 
 /** Allow multiple short URLs for a same long URL
  ** Set to true to have only one pair of shortURL/longURL (default YOURLS behavior)
