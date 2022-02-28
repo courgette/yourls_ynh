@@ -63,7 +63,7 @@
                 },
                 "choices": ["fr-FR", "en-US"],
                 "default": "fr-FR"
-            },
+            }
         ]
     }
 }
