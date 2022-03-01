@@ -1,63 +1,45 @@
-# YOURLS pour YunoHost
+# Yourls pour YunoHost
 
 [![Niveau d'intégration](https://dash.yunohost.org/integration/yourls.svg)](https://dash.yunohost.org/appci/app/yourls) ![](https://ci-apps.yunohost.org/ci/badges/yourls.status.svg) ![](https://ci-apps.yunohost.org/ci/badges/yourls.maintain.svg)  
-[![Installer YOURLS avec YunoHost](https://install-app.yunohost.org/install-with-yunohost.svg)](https://install-app.yunohost.org/?app=yourls)
+[![Installer Yourls avec YunoHost](https://install-app.yunohost.org/install-with-yunohost.svg)](https://install-app.yunohost.org/?app=yourls)
 
-*[Read this readme in english.](./README.md)* 
+*[Read this readme in english.](./README.md)*
+*[Lire ce readme en français.](./README_fr.md)*
 
-> *Ce package vous permet d'installer YOURLS rapidement et simplement sur un serveur YunoHost.  
-Si vous n'avez pas YunoHost, consultez [le guide](https://yunohost.org/#/install) pour apprendre comment l'installer.*
+> *Ce package vous permet d'installer Yourls rapidement et simplement sur un serveur YunoHost.
+Si vous n'avez pas YunoHost, regardez [ici](https://yunohost.org/#/install) pour savoir comment l'installer et en profiter.*
 
 ## Vue d'ensemble
-YOURLS signifie Your Own URL Shortener. C'est un petit ensemble de scripts PHP qui vous permettront d'exécuter votre propre service de raccourcissement d'URL (à la TinyURL ou bitly).
 
-**Version incluse :** 1.8.1
+YOURLS stands for Your Own URL Shortener. It is a small set of PHP scripts that will allow you to run your own URL shortening service (a la TinyURL or bitly).
+
+Running your own URL shortener is fun, geeky and useful: you own your data and don't depend on third-party services. It's also a great way to add branding to your short URLs, instead of using the same public URL shortener everyone uses.
+
+### YOURLS Features
+
+- Private (your links only) or Public (everybody can create short links, fine for an intranet)
+- Dozens of plugins to easily implement new features
+- Handy bookmarklets to easily shorten and share links
+- Awesome stats: historical click reports, referrers tracking, visitors geo-location
+- Developer API to integrate YOURLS into other applications
+- Sample files to create your own public interface
+
+
+**Version incluse :** 1.8.2~ynh1
+
+**Démo :** https://yourls.org/cookie+
 
 ## Captures d'écran
 
-![](https://yourls.org/images/stats-anim.gif)
+![](./doc/screenshots/p4.png)
 
-## Démo
+## Documentations et ressources
 
-* [Official demo](https://yourls.org/cookie+)
-
-## Configuration
-
-How to configure this app: From an admin panel, a plain file with SSH, or any other way.
-
-## Documentation
-
- * Documentation officielle : Lien vers la documentation officielle de cette application.
- * Documentation YunoHost : Si une documentation spécifique est nécessaire, n'hésitez pas à contribuer.
-
-## Caractéristiques spécifiques YunoHost
-
-#### Support multi-utilisateur
-
-* L'authentification LDAP et HTTP est-elle prise en charge ?
-* L'application peut-elle être utilisée par plusieurs utilisateurs ?
-
-#### Architectures supportées
-
-* x86-64 - [![Build Status](https://ci-apps.yunohost.org/ci/logs/yourls%20%28Apps%29.svg)](https://ci-apps.yunohost.org/ci/apps/yourls/)
-* ARMv8-A - [![Build Status](https://ci-apps-arm.yunohost.org/ci/logs/yourls%20%28Apps%29.svg)](https://ci-apps-arm.yunohost.org/ci/apps/yourls/)
-
-## Limitations
-
-* Limitations connues.
-
-## Informations additionnelles
-
-* Autres informations que vous souhaitez ajouter sur cette application.
-
-## Links
-
- * Signaler un bug : https://github.com/YunoHost-Apps/yourls_ynh/issues
- * Site de l'application : https://yourls.org/
- * Dépôt de l'application principale : https://github.com/YOURLS/YOURLS
- * Site web YunoHost : https://yunohost.org/
-
----
+* Site officiel de l'app : https://yourls.org/
+* Documentation officielle de l'admin : https://github.com/YOURLS/YOURLS/wiki
+* Dépôt de code officiel de l'app : https://github.com/YOURLS/YOURLS
+* Documentation YunoHost pour cette app : https://yunohost.org/app_yourls
+* Signaler un bug : https://github.com/YunoHost-Apps/yourls_ynh/issues
 
 ## Informations pour les développeurs
 
@@ -66,6 +48,8 @@ Merci de faire vos pull request sur la [branche testing](https://github.com/Yuno
 Pour essayer la branche testing, procédez comme suit.
 ```
 sudo yunohost app install https://github.com/YunoHost-Apps/yourls_ynh/tree/testing --debug
-or
+ou
 sudo yunohost app upgrade yourls -u https://github.com/YunoHost-Apps/yourls_ynh/tree/testing --debug
 ```
+
+**Plus d'infos sur le packaging d'applications :** https://yunohost.org/packaging_apps

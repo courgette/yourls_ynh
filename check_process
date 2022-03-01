@@ -1,13 +1,10 @@
-# See here for more informations
-# https://github.com/YunoHost/package_check#syntax-check_process-file
-
-# Move this file from check_process.default to check_process when you have filled it.
-
 ;; Test complet
 	; Manifest
-		domain="domain.tld"	(DOMAIN)
-		path="/path"	(PATH)
-		admin="john"	(USER)
+		domain="domain.tld"
+		path="/path"
+		admin="john"
+		language="fr_FR"
+		password="1Strong-Password"
 	; Checks
 		pkg_linter=1
 		setup_sub_dir=1
@@ -16,10 +13,14 @@
 		setup_private=0
 		setup_public=1
 		upgrade=1
+		upgrade=1	from_commit=455317a9e0a55ffb2cb80f79f2a2f56af4d3d671
 		backup_restore=1
 		multi_instance=1
-		port_already_use=0
-		change_url=0
+		change_url=1
 ;;; Options
-Email=anmol@datamol.org
-Notification=change
+Email=
+Notification=none
+;;; Upgrade options
+	; commit=455317a9e0a55ffb2cb80f79f2a2f56af4d3d671
+		name=Merge pull request #17
+		manifest_arg=domain=DOMAIN&path=PATH&admin=USER&language=fr&is_public=1&password=pass&port=666&

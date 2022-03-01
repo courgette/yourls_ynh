@@ -6,34 +6,39 @@
         "en": "URL shortening service",
         "fr": "Service de raccourcisseur d'URL"
     },
-    "version": "1.8.1~ynh1",
-    "url": "https://github.com/YOURLS/YOURLS",
+    "version": "1.8.2~ynh1",
+    "url": "https://yourls.org/",
+    "upstream": {
+        "license": "MIT",
+        "website": "https://yourls.org/",
+        "demo": "https://yourls.org/cookie+",
+        "admindoc": "https://github.com/YOURLS/YOURLS/wiki",
+        "code": "https://github.com/YOURLS/YOURLS"
+    },
     "license": "MIT",
     "maintainer": {
         "name": "Anmol Sharma",
-        "email": "anmol@datamol.org",
-        "url": ""
-    },
-    "requirements": {
-        "yunohost": ">= 4.1.7"
+        "email": "anmol@datamol.org"
     },
     "previous_maintainers": {
         "name": "courgette",
         "email": "courgette@farcie.fr",
         "url": "http://thomaslebeau.fr"
         },
+    "requirements": {
+        "yunohost": ">= 4.3.0"
+    },
     "multi_instance": true,
     "services": [
         "nginx",
-        "php7.3-fpm",
+        "php7.4-fpm",
         "mysql"
     ],
     "arguments": {
         "install" : [
             {
                 "name": "domain",
-                "type": "domain",
-                "example": "domain.org"
+                "type": "domain"
             },
             {
                 "name": "path",
@@ -43,8 +48,21 @@
             },
             {
                 "name": "admin",
-                "type": "user",
-                "example": "johndoe"
+                "type": "user"
+            },
+            {
+                "name": "password",
+                "type": "password"
+            },
+            {
+                "name": "language",
+                "type": "string",
+                "ask": {
+                    "en": "Choose the application language",
+                    "fr": "Choisissez la langue de l'application"
+                },
+                "choices": ["fr_FR", "en_US"],
+                "default": "fr_FR"
             }
         ]
     }
