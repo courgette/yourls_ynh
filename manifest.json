@@ -6,7 +6,7 @@
         "en": "URL shortening service",
         "fr": "Service de raccourcisseur d'URL"
     },
-    "version": "1.8.2~ynh1",
+    "version": "1.9~ynh1",
     "url": "https://yourls.org/",
     "upstream": {
         "license": "MIT",
@@ -31,7 +31,7 @@
     "multi_instance": true,
     "services": [
         "nginx",
-        "php7.4-fpm",
+        "php8.0-fpm",
         "mysql"
     ],
     "arguments": {

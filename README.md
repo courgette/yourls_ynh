@@ -29,7 +29,7 @@ Running your own URL shortener is fun, geeky and useful: you own your data and d
 - Sample files to create your own public interface
 
 
-**Shipped version:** 1.8.2~ynh1
+**Shipped version:** 1.9~ynh1
 
 **Demo:** https://yourls.org/cookie+
 
