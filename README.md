@@ -29,7 +29,7 @@ Running your own URL shortener is fun, geeky and useful: you own your data and d
 - Sample files to create your own public interface
 
 
-**Shipped version:** 1.9~ynh1
+**Shipped version:** 1.9~ynh2
 
 **Demo:** https://yourls.org/cookie+
 
@@ -40,7 +40,7 @@ Running your own URL shortener is fun, geeky and useful: you own your data and d
 ## Documentation and resources
 
 * Official app website: https://yourls.org/
-* Official admin documentation: https://github.com/YOURLS/YOURLS/wiki
+* Official admin documentation: https://docs.yourls.org/
 * Upstream app code repository: https://github.com/YOURLS/YOURLS
 * YunoHost documentation for this app: https://yunohost.org/app_yourls
 * Report a bug: https://github.com/YunoHost-Apps/yourls_ynh/issues
