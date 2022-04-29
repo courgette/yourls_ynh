@@ -6,13 +6,13 @@
         "en": "URL shortening service",
         "fr": "Service de raccourcisseur d'URL"
     },
-    "version": "1.9~ynh1",
+    "version": "1.9~ynh2",
     "url": "https://yourls.org/",
     "upstream": {
         "license": "MIT",
         "website": "https://yourls.org/",
         "demo": "https://yourls.org/cookie+",
-        "admindoc": "https://github.com/YOURLS/YOURLS/wiki",
+        "admindoc": "https://docs.yourls.org/",
         "code": "https://github.com/YOURLS/YOURLS"
     },
     "license": "MIT",
