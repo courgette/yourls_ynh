@@ -6,7 +6,7 @@
         "en": "URL shortening service",
         "fr": "Service de raccourcisseur d'URL"
     },
-    "version": "1.9~ynh2",
+    "version": "1.9.1~ynh1",
     "url": "https://yourls.org/",
     "upstream": {
         "license": "MIT",
