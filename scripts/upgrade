@@ -22,7 +22,7 @@ final_path=$(ynh_app_setting_get --app=$app --key=final_path)
 db_name=$(ynh_app_setting_get --app=$app --key=db_name)
 db_user=$db_name
 db_pwd=$(ynh_app_setting_get --app=$app --key=mysqlpwd)
-phpversion=$(ynh_app_setting_get --app=$app --key=phpversion)
+phpversion=$YNH_PHP_VERSION
 
 #=================================================
 # CHECK VERSION
@@ -98,14 +98,6 @@ chmod -R o-rwx "$final_path"
 chown -R $app:www-data "$final_path"
 
 #=================================================
-# NGINX CONFIGURATION
-#=================================================
-ynh_script_progression --message="Upgrading NGINX web server configuration..." --weight=1
-
-# Create a dedicated NGINX config
-ynh_add_nginx_config
-
-#=================================================
 # UPGRADE DEPENDENCIES
 #=================================================
 ynh_script_progression --message="Upgrading dependencies..." --weight=1
@@ -119,6 +111,14 @@ ynh_script_progression --message="Upgrading PHP-FPM configuration..." --weight=4
 
 # Create a dedicated PHP-FPM config
 ynh_add_fpm_config
+
+#=================================================
+# NGINX CONFIGURATION
+#=================================================
+ynh_script_progression --message="Upgrading NGINX web server configuration..." --weight=1
+
+# Create a dedicated NGINX config
+ynh_add_nginx_config
 
 #=================================================
 # RELOAD NGINX
