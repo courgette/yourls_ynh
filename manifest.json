@@ -6,7 +6,7 @@
         "en": "URL shortening service",
         "fr": "Service de raccourcisseur d'URL"
     },
-    "version": "1.9.1~ynh2",
+    "version": "1.9.1~ynh3",
     "url": "https://yourls.org/",
     "upstream": {
         "license": "MIT",
@@ -26,7 +26,7 @@
         "url": "http://thomaslebeau.fr"
         },
     "requirements": {
-        "yunohost": ">= 4.3.0"
+        "yunohost": ">= 11.0.9"
     },
     "multi_instance": true,
     "services": [
