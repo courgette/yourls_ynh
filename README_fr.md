@@ -5,15 +5,16 @@ It shall NOT be edited by hand.
 
 # Yourls pour YunoHost
 
-[![Niveau d'intégration](https://dash.yunohost.org/integration/yourls.svg)](https://dash.yunohost.org/appci/app/yourls) ![Statut du fonctionnement](https://ci-apps.yunohost.org/ci/badges/yourls.status.svg) ![Statut de maintenance](https://ci-apps.yunohost.org/ci/badges/yourls.maintain.svg)  
+[![Niveau d’intégration](https://dash.yunohost.org/integration/yourls.svg)](https://dash.yunohost.org/appci/app/yourls) ![Statut du fonctionnement](https://ci-apps.yunohost.org/ci/badges/yourls.status.svg) ![Statut de maintenance](https://ci-apps.yunohost.org/ci/badges/yourls.maintain.svg)
+
 [![Installer Yourls avec YunoHost](https://install-app.yunohost.org/install-with-yunohost.svg)](https://install-app.yunohost.org/?app=yourls)
 
 *[Read this readme in english.](./README.md)*
 
-> *Ce package vous permet d'installer Yourls rapidement et simplement sur un serveur YunoHost.
-Si vous n'avez pas YunoHost, regardez [ici](https://yunohost.org/#/install) pour savoir comment l'installer et en profiter.*
+> *Ce package vous permet d’installer Yourls rapidement et simplement sur un serveur YunoHost.
+Si vous n’avez pas YunoHost, regardez [ici](https://yunohost.org/#/install) pour savoir comment l’installer et en profiter.*
 
-## Vue d'ensemble
+## Vue d’ensemble
 
 YOURLS stands for Your Own URL Shortener. It is a small set of PHP scripts that will allow you to run your own URL shortening service (a la TinyURL or bitly).
 
@@ -29,20 +30,19 @@ Running your own URL shortener is fun, geeky and useful: you own your data and d
 - Sample files to create your own public interface
 
 
-**Version incluse :** 1.9.1~ynh3
-
+**Version incluse :** 1.9.1~ynh3
 
 **Démo :** https://yourls.org/cookie+
 
-## Captures d'écran
+## Captures d’écran
 
-![Capture d'écran de Yourls](./doc/screenshots/p4.png)
+![Capture d’écran de Yourls](./doc/screenshots/p4.png)
 
 ## Documentations et ressources
 
-* Site officiel de l'app : <https://yourls.org/>
-* Documentation officielle de l'admin : <https://docs.yourls.org/>
-* Dépôt de code officiel de l'app : <https://github.com/YOURLS/YOURLS>
+* Site officiel de l’app : <https://yourls.org/>
+* Documentation officielle de l’admin : <https://docs.yourls.org/>
+* Dépôt de code officiel de l’app : <https://github.com/YOURLS/YOURLS>
 * Documentation YunoHost pour cette app : <https://yunohost.org/app_yourls>
 * Signaler un bug : <https://github.com/YunoHost-Apps/yourls_ynh/issues>
 
@@ -58,4 +58,4 @@ ou
 sudo yunohost app upgrade yourls -u https://github.com/YunoHost-Apps/yourls_ynh/tree/testing --debug
 ```
 
-**Plus d'infos sur le packaging d'applications :** <https://yunohost.org/packaging_apps>
+**Plus d’infos sur le packaging d’applications :** <https://yunohost.org/packaging_apps>
