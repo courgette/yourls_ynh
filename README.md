@@ -5,7 +5,8 @@ It shall NOT be edited by hand.
 
 # Yourls for YunoHost
 
-[![Integration level](https://dash.yunohost.org/integration/yourls.svg)](https://dash.yunohost.org/appci/app/yourls) ![Working status](https://ci-apps.yunohost.org/ci/badges/yourls.status.svg) ![Maintenance status](https://ci-apps.yunohost.org/ci/badges/yourls.maintain.svg)  
+[![Integration level](https://dash.yunohost.org/integration/yourls.svg)](https://dash.yunohost.org/appci/app/yourls) ![Working status](https://ci-apps.yunohost.org/ci/badges/yourls.status.svg) ![Maintenance status](https://ci-apps.yunohost.org/ci/badges/yourls.maintain.svg)
+
 [![Install Yourls with YunoHost](https://install-app.yunohost.org/install-with-yunohost.svg)](https://install-app.yunohost.org/?app=yourls)
 
 *[Lire ce readme en français.](./README_fr.md)*
@@ -29,8 +30,7 @@ Running your own URL shortener is fun, geeky and useful: you own your data and d
 - Sample files to create your own public interface
 
 
-**Shipped version:** 1.9.1~ynh3
-
+**Shipped version:** 1.9.2~ynh1
 
 **Demo:** https://yourls.org/cookie+
 
