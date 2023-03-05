@@ -71,11 +71,6 @@ chown $app:$app "$install_dir/user/config.php"
 # SETUP APPLICATION WITH CURL
 #=================================================
 
-# Set the app as temporarily public for curl call
-ynh_script_progression --message="Configuring SSOwat..." --weight=1
-# Making the app public for curl
-#REMOVEME? ynh_permission_update --permission="main" --add="visitors"
-
 # Installation with curl
 ynh_script_progression --message="Finalizing installation..." --weight=1
 ynh_local_curl "admin/install.php" "install=dummy"

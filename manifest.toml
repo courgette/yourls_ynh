@@ -23,7 +23,7 @@ multi_instance = true
 ldap = false
 sso = false
 disk = "50M"
-ram.build = "50M"
+ram.build = "150M"
 ram.runtime = "50M"
 
 [install]
@@ -61,7 +61,6 @@ ram.runtime = "50M"
 
     [resources.apt]
     packages = "mariadb-server php8.1-gmp php8.1-bcmath php8.1-curl php8.1-mysql php8.1-zip php8.1-gd php8.1-mbstring php8.1-xml"
-
 
     [resources.database]
     type = "mysql"
