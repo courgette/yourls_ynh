@@ -1,0 +1,66 @@
+packaging_format = 2
+
+id = "yourls"
+name = "Yourls"
+description.en = "URL shortening service"
+description.fr = "Service de raccourcisseur d'URL"
+
+version = "1.9.2~ynh1"
+
+maintainers = ["Anmol Sharma"]
+
+[upstream]
+license = "MIT"
+website = "https://yourls.org/"
+demo = "https://yourls.org/cookie+"
+admindoc = "https://docs.yourls.org/"
+code = "https://github.com/YOURLS/YOURLS"
+
+[integration]
+yunohost = ">= 11.1.13"
+architectures = "all"
+multi_instance = true
+ldap = false
+sso = false
+disk = "50M"
+ram.build = "150M"
+ram.runtime = "50M"
+
+[install]
+    [install.domain]
+    type = "domain"
+
+    [install.path]
+    type = "path"
+    default = "/yourls"
+
+    [install.admin]
+    type = "user"
+
+    [install.password]
+    type = "password"
+
+    [install.language]
+    ask.en = "Choose the application language"
+    ask.fr = "Choisissez la langue de l'application"
+    type = "string"
+    choices = ["fr_FR", "en_US"]
+    default = "fr_FR"
+
+[resources]
+    [resources.system_user]
+
+    [resources.install_dir]
+
+    [resources.permissions]
+    main.url = "/"
+
+    admin.url = "/admin"
+    admin.show_tile = false
+    admin.allowed = "admins"
+
+    [resources.apt]
+    packages = "mariadb-server php8.1-gmp php8.1-bcmath php8.1-curl php8.1-mysql php8.1-zip php8.1-gd php8.1-mbstring php8.1-xml"
+
+    [resources.database]
+    type = "mysql"
