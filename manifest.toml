@@ -55,6 +55,10 @@ ram.runtime = "50M"
         url = "https://github.com/YOURLS/YOURLS/archive/1.9.2.zip"
         sha256 = "65e242aaf007f86d7bf8f7f2776ee814a632a783749151d043d669512c3b41cb"
 
+        [resources.sources.fr]
+        url = "https://github.com/ozh/YOURLS-fr_FR/archive/refs/tags/1.8.zip"
+        sha256 = "ef9c0e71d4559994b9df0cd0a558f6faf11eba185c4793ba0e30f3500dab1b04"
+
     [resources.system_user]
 
     [resources.install_dir]
