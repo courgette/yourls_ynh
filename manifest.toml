@@ -17,7 +17,7 @@ admindoc = "https://docs.yourls.org/"
 code = "https://github.com/YOURLS/YOURLS"
 
 [integration]
-yunohost = ">= 11.1.19"
+yunohost = ">= 11.1.21"
 architectures = "all"
 multi_instance = true
 ldap = false
