@@ -5,9 +5,9 @@ name = "Yourls"
 description.en = "URL shortening service"
 description.fr = "Service de raccourcisseur d'URL"
 
-version = "1.9.2~ynh2"
+version = "1.9.2~ynh3"
 
-maintainers = ["Anmol Sharma"]
+maintainers = [""]
 
 [upstream]
 license = "MIT"
@@ -17,7 +17,7 @@ admindoc = "https://docs.yourls.org/"
 code = "https://github.com/YOURLS/YOURLS"
 
 [integration]
-yunohost = ">= 11.1.15"
+yunohost = ">= 11.2"
 architectures = "all"
 multi_instance = true
 ldap = false
@@ -34,6 +34,10 @@ ram.runtime = "50M"
     type = "path"
     default = "/yourls"
 
+    [install.init_main_permission]
+    type = "group"
+    default = "visitors"
+
     [install.admin]
     type = "user"
 
@@ -43,8 +47,8 @@ ram.runtime = "50M"
     [install.language]
     ask.en = "Choose the application language"
     ask.fr = "Choisissez la langue de l'application"
-    type = "string"
-    choices = ["fr_FR", "en_US"]
+    type = "select"
+    select = ["fr_FR", "en_US"]
     default = "fr_FR"
 
 [resources]
@@ -54,10 +58,12 @@ ram.runtime = "50M"
         [resources.sources.main]
         url = "https://github.com/YOURLS/YOURLS/archive/1.9.2.zip"
         sha256 = "65e242aaf007f86d7bf8f7f2776ee814a632a783749151d043d669512c3b41cb"
+        autoupdate.strategy = "latest_github_tag"
 
         [resources.sources.fr]
         url = "https://github.com/ozh/YOURLS-fr_FR/archive/refs/tags/1.8.zip"
         sha256 = "ef9c0e71d4559994b9df0cd0a558f6faf11eba185c4793ba0e30f3500dab1b04"
+        autoupdate.strategy = "latest_github_tag"
 
     [resources.system_user]
 
@@ -65,13 +71,12 @@ ram.runtime = "50M"
 
     [resources.permissions]
     main.url = "/"
-
     admin.url = "/admin"
     admin.show_tile = false
     admin.allowed = "admins"
 
     [resources.apt]
-    packages = "mariadb-server php8.1-gmp php8.1-bcmath php8.1-curl php8.1-mysql php8.1-zip php8.1-gd php8.1-mbstring php8.1-xml"
+    packages = "mariadb-server, php8.1-gmp, php8.1-bcmath, php8.1-curl, php8.1-mysql, php8.1-zip, php8.1-gd, php8.1-mbstring, php8.1-xml"
 
     [resources.database]
     type = "mysql"
