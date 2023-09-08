@@ -17,7 +17,7 @@ admindoc = "https://docs.yourls.org/"
 code = "https://github.com/YOURLS/YOURLS"
 
 [integration]
-yunohost = ">= 11.1.21"
+yunohost = ">= 11.2"
 architectures = "all"
 multi_instance = true
 ldap = false
@@ -34,6 +34,10 @@ ram.runtime = "50M"
     type = "path"
     default = "/yourls"
 
+    [install.init_main_permission]
+    type = "group"
+    default = "visitors"
+
     [install.admin]
     type = "user"
 
@@ -43,7 +47,7 @@ ram.runtime = "50M"
     [install.language]
     ask.en = "Choose the application language"
     ask.fr = "Choisissez la langue de l'application"
-    type = "string"
+    type = "select"
     select = ["fr_FR", "en_US"]
     default = "fr_FR"
 
@@ -72,7 +76,7 @@ ram.runtime = "50M"
     admin.allowed = "admins"
 
     [resources.apt]
-    packages = "mariadb-server php8.1-gmp php8.1-bcmath php8.1-curl php8.1-mysql php8.1-zip php8.1-gd php8.1-mbstring php8.1-xml"
+    packages = "mariadb-server, php8.1-gmp, php8.1-bcmath, php8.1-curl, php8.1-mysql, php8.1-zip, php8.1-gd, php8.1-mbstring, php8.1-xml"
 
     [resources.database]
     type = "mysql"
