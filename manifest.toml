@@ -5,7 +5,7 @@ name = "Yourls"
 description.en = "URL shortening service"
 description.fr = "Service de raccourcisseur d'URL"
 
-version = "1.9.2~ynh2"
+version = "1.9.2~ynh3"
 
 maintainers = [""]
 
@@ -33,6 +33,10 @@ ram.runtime = "50M"
     [install.path]
     type = "path"
     default = "/yourls"
+
+    [install.init_main_permission]
+    type = "group"
+    default = "visitors"
 
     [install.admin]
     type = "user"
